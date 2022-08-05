@@ -40,12 +40,12 @@ public class Userservice {
 		
 		userRepository.save(user);
 
-		return new ApiResponseEntity<UserResponse>(null, MessageCode.REGISTERED);
+		return new ApiResponseEntity<UserResponse>(MessageCode.REGISTERED);
 	}
 
 	public ApiResponseEntity<String> login(UserLoginRequest userLoginRequest) {
 		User selectMember = getUser(userRepository.findByLoginId(userLoginRequest.getLoginId()));
-
+		
         if (!passwordEncoder.matches(userLoginRequest.getPassword(), selectMember.getPassword())) {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
         }
@@ -60,7 +60,7 @@ public class Userservice {
 		}
 	}
 	
-	private User getUser(Optional<User> user) {
+	private User getUser(Optional<User> user) throws CustomException {
 		return user.orElseThrow(() -> new CustomException(MessageCode.NO_CONTENT));
 	}
 

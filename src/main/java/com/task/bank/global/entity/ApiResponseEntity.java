@@ -10,7 +10,9 @@ import lombok.Setter;
 public class ApiResponseEntity<T> {
 
     private boolean success = true;
+    
     private T response = null;
+    
     private String message = MessageCode.SUCCEED.getMessage();
 
     public ApiResponseEntity(T response) {

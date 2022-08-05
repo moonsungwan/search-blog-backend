@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
         log.error("handleDataException throw Exception : {}", MessageCode.BUSINESS_EXCEPTION);
         return ErrorResponse.toResponseEntity(MessageCode.BUSINESS_EXCEPTION);
     }
-//
+
     @ExceptionHandler(value = { CustomException.class })
     protected ResponseEntity<ErrorResponse> handleCustomException(CustomException e) {
         log.error("handleCustomException throw CustomException : {}", e.getMessageCode());

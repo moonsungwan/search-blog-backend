@@ -31,8 +31,8 @@ public class SwaggerConfig {
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
-                .title("계약관리시스템 API")
-                .description("보험사의 계약관리 API 시스템")
+                .title("블로그 검색 서비스 API")
+                .description("블로그 검색 서비스 API")
                 .build();
     }
 

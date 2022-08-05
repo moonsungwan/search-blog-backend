@@ -17,7 +17,6 @@ import com.task.bank.global.security.JwtAuthenticationEntryPoint;
 import com.task.bank.global.security.JwtAuthenticationFilter;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
