@@ -11,16 +11,16 @@ public class ApiResponseEntity<T> {
 
     private boolean success = true;
     
-    private T response = null;
+    private T data = null;
     
     private String message = MessageCode.SUCCEED.getMessage();
 
-    public ApiResponseEntity(T response) {
-        this.response = response;
+    public ApiResponseEntity(T data) {
+        this.data = data;
     }
 
-    public ApiResponseEntity(T response, MessageCode message) {
-        this.response = response;
+    public ApiResponseEntity(T data, MessageCode message) {
+        this.data = data;
         this.message = message.getMessage();
     }
 
@@ -28,14 +28,14 @@ public class ApiResponseEntity<T> {
         this.message = message.getMessage();
     }
 
-    public ApiResponseEntity(T response, int result) {
-    	this.response = response;
+    public ApiResponseEntity(T data, int result) {
+    	this.data = data;
     	this.message = result > 0 ? MessageCode.SUCCEED.getMessage() : MessageCode.FAILED.getMessage();
     }
 
-    public ApiResponseEntity(boolean success, T response, MessageCode message) {
+    public ApiResponseEntity(boolean success, T data, MessageCode message) {
         this.success = success;
-        this.response = response;
+        this.data = data;
         this.message = message.getMessage();
     }
 

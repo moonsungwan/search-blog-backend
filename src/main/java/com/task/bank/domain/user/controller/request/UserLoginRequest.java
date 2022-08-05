@@ -3,12 +3,10 @@ package com.task.bank.domain.user.controller.request;
 import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiParam;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginRequest {
 

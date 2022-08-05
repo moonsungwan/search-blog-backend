@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.task.bank.domain.user.controller.request.UserCreateRequest;
 import com.task.bank.domain.user.controller.request.UserLoginRequest;
-import com.task.bank.domain.user.controller.response.UserResponse;
+import com.task.bank.domain.user.controller.response.UserLoginResponse;
 import com.task.bank.domain.user.entity.User;
 import com.task.bank.domain.user.repository.UserRepository;
 import com.task.bank.global.entity.ApiResponseEntity;
@@ -29,7 +29,7 @@ public class Userservice {
     private final PasswordEncoder passwordEncoder;
 
 	@Transactional
-	public ApiResponseEntity<UserResponse> signUp(UserCreateRequest userCreateRequest) {
+	public ApiResponseEntity<UserLoginResponse> signUp(UserCreateRequest userCreateRequest) {
 		checkDuplication(userCreateRequest);
 
 		User user = User.CreateUser()
@@ -40,18 +40,26 @@ public class Userservice {
 		
 		userRepository.save(user);
 
-		return new ApiResponseEntity<UserResponse>(MessageCode.REGISTERED);
+		return new ApiResponseEntity<UserLoginResponse>(createUserLoginResponse(user.getLoginId()));
 	}
 
-	public ApiResponseEntity<String> login(UserLoginRequest userLoginRequest) {
+	public ApiResponseEntity<UserLoginResponse> login(UserLoginRequest userLoginRequest) {
 		User selectMember = getUser(userRepository.findByLoginId(userLoginRequest.getLoginId()));
 		
         if (!passwordEncoder.matches(userLoginRequest.getPassword(), selectMember.getPassword())) {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
         }
 
-        Authentication authentication = new UserAuthentication(userLoginRequest.getLoginId(), null, null);
-        return new ApiResponseEntity<String>(JwtTokenProvider.generateToken(authentication));
+        return new ApiResponseEntity<UserLoginResponse>(createUserLoginResponse(userLoginRequest.getLoginId()));
+	}
+	
+	private UserLoginResponse createUserLoginResponse(String loginId) {
+        Authentication authentication = new UserAuthentication(loginId, null);
+        
+		return UserLoginResponse.builder()
+							 	.loginId(loginId)
+							 	.accessToken(JwtTokenProvider.generateToken(authentication))
+							 	.build();
 	}
 	
 	private void checkDuplication(UserCreateRequest userRequest) {

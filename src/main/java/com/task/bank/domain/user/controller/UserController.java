@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.task.bank.domain.user.controller.request.UserCreateRequest;
 import com.task.bank.domain.user.controller.request.UserLoginRequest;
-import com.task.bank.domain.user.controller.response.UserResponse;
+import com.task.bank.domain.user.controller.response.UserLoginResponse;
 import com.task.bank.domain.user.service.Userservice;
 import com.task.bank.global.entity.ApiResponseEntity;
 import com.task.bank.global.message.MessageCode;
@@ -34,13 +34,13 @@ public class UserController {
 	
 	@ApiOperation(value = "회원가입", notes="회원가입")
 	@PostMapping("/sign-up")
-	public ApiResponseEntity<UserResponse> signUp(@Valid @RequestBody UserCreateRequest userRequest)   {
+	public ApiResponseEntity<UserLoginResponse> signUp(@Valid @RequestBody UserCreateRequest userRequest)   {
 		return userservice.signUp(userRequest);
 	}
 
 	@ApiOperation(value = "로그인", notes="로그인")
 	@PostMapping("/login")
-	public ApiResponseEntity<String> login(@Valid @RequestBody UserLoginRequest userLoginRequest)   {
+	public ApiResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest userLoginRequest)   {
 		return userservice.login(userLoginRequest);
 	}
 	
