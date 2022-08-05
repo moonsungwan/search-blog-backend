@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import com.task.bank.domain.searchistory.controller.request.SearchHistoryInsertRequest;
 import com.task.bank.domain.searchistory.controller.response.SearchHistoryResponse;
@@ -27,26 +28,47 @@ public class SearchHistoryService {
 		
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<List<SearchHistoryResponse>> find() {
-		List<SearchHistory> list = searchHistoryRepository.findTop10ByOrderBySearchCountDesc();
+		List<SearchHistoryResponse> response = searchHistoryRepository.findTop10ByOrderBySearchCountDesc()
+				  													  .stream()
+				  													  .map(history -> modelMapper.map(history, SearchHistoryResponse.class))
+				  													  .collect(Collectors.toList());
 		
-		return new ApiResponseEntity<List<SearchHistoryResponse>>(createSerarchHistoryResponse(list), MessageCode.SUCCEED);
+		List<SearchHistoryResponse> response2 = searchHistoryRepository.findTop10ByOrderBySearchCountDesc()
+				  	.stream()
+				  .map(history -> modelMapper.map(history, SearchHistoryResponse.class))
+				  .collect(Collectors.toList());
+
+		searchHistoryRepository.findTop10ByOrderBySearchCountDesc().forEach(name -> {
+		    System.out.println("11 : "+name.getSearchWord());
+		});
+		
+		
+		for (SearchHistoryResponse searchHistoryResponse : response) {
+			System.out.println("gg" + searchHistoryResponse.getSearchWord());
+		}
+		
+		return new ApiResponseEntity<List<SearchHistoryResponse>>(response, MessageCode.SUCCEED);
 	}
 	
 	@Transactional
 	public ApiResponseEntity<Boolean> save(SearchHistoryInsertRequest searchHistoryInsertRequest) {
-		SearchHistory searchHistory = searchHistoryRepository.getById(searchHistoryInsertRequest.getSearchWord());
-		searchHistory.addCount();
+		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchHistoryInsertRequest.getSearchWord());
 		
-		searchHistoryRepository.save(searchHistory);
+		if (ObjectUtils.isEmpty(searchHistory)) {
+			searchHistory = SearchHistory.InsertSearchHistory()
+										 .searchWord(searchHistoryInsertRequest.getSearchWord())
+										 .build();
+		} else {
+			searchHistory = SearchHistory.UpdateSearchHistory()
+										 .id(searchHistory.getId())
+					 					 .searchWord(searchHistoryInsertRequest.getSearchWord())
+					 					 .searchCount(searchHistory.getSearchCount())
+					 					 .build();
+		}
+		
+		searchHistoryRepository.save(searchHistory);	
 		
 		return new ApiResponseEntity<Boolean>(true, MessageCode.REGISTERED);
 	}
 
-	private List<SearchHistoryResponse> createSerarchHistoryResponse(List<SearchHistory> list) {
-		return searchHistoryRepository.findTop10ByOrderBySearchCountDesc()
-	    							  .stream()
-	    							  .map(history -> modelMapper.map(history, SearchHistoryResponse.class))
-	    							  .collect(Collectors.toList());
-	} 
-	
 }
