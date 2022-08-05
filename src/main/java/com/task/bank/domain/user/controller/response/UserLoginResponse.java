@@ -2,9 +2,9 @@ package com.task.bank.domain.user.controller.response;
 
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class UserLoginResponse {
 

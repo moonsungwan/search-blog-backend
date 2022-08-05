@@ -26,18 +26,18 @@ public class User extends BaseEntity {
 	private Long id;
 	
     /* 로그인 ID */
-    @Column(name = "LOGIN_ID")
+    @Column(name = "LOGIN_ID", nullable = false)
     private String loginId;
 
     /* 비밀번호 */
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
     
     /* 닉네임 */
-    @Column(name = "NICK_NAME")
+    @Column(name = "NICK_NAME", nullable = false)
     private String nickName;
 
-    @Builder(builderClassName = "CreateUser", builderMethodName = "CreateUser")
+    @Builder(builderClassName = "InsertUser", builderMethodName = "InsertUser")
     public User(String loginId, String password, String nickName) {
         this.loginId = loginId;
         this.password = password;

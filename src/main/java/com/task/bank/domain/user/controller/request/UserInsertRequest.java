@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserCreateRequest {
+public class UserInsertRequest {
 
 	/* 로그인 ID */
 	@ApiParam(value = "loginId", required = true)
