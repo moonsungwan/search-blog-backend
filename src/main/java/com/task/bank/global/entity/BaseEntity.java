@@ -24,13 +24,14 @@ public class BaseEntity {
     private String createdBy = "ADMIN";
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "CREATED_AT", updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "UPDATED_BY")
     private String updatedBy = "ADMIN";
 
     @LastModifiedDate
+    @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
 
 }

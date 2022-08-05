@@ -7,7 +7,6 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -26,12 +25,6 @@ public class SwaggerConfig {
                  .apis(RequestHandlerSelectors.any())
                  .paths(PathSelectors.any())
                  .build()
-                 .tags(
-                     new Tag("1. 계약 생성 API", "1"),
-                     new Tag("2. 계약 정보 조회 API", "2"),
-                     new Tag("3. 계약 정보 수정 API", "3"),
-                     new Tag("4. 예상 총 보험료 계산 API", "4")
-                 )
                  .apiInfo(metaData())
                  ;
     }

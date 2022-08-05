@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.task.bank.global.entity.BaseEntity;
+
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,16 +18,30 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "USER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class User extends BaseEntity {
 
-	/* 로그인 ID */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LOG_ID")
-    private Long loginId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Long id;
+	
+    /* 로그인 ID */
+    @Column(name = "LOGIN_ID")
+    private String loginId;
 
     /* 비밀번호 */
     @Column(name = "PASSWORD")
     private String password;
+    
+    /* 닉네임 */
+    @Column(name = "NICK_NAME")
+    private String nickName;
 
+    @Builder(builderClassName = "CreateUser", builderMethodName = "CreateUser")
+    public User(String loginId, String password, String nickName) {
+        this.loginId = loginId;
+        this.password = password;
+        this.nickName = nickName;
+    }
+    
 }
