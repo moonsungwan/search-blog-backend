@@ -1,2 +1,2 @@
-# bank-task-project
-bank-task-project
+# 블로그 검색 서비스
+블로그 검색 서비스
