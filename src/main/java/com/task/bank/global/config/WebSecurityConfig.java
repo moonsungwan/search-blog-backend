@@ -1,6 +1,5 @@
 package com.task.bank.global.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -53,7 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     			.and()
     		.addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
     		.authorizeRequests()
-    		.antMatchers("/api/v1/user/login", "/api/v1/user/logout", "/api/v1/user/sign-up").permitAll()
+    		.antMatchers(
+    				"/api/v1/user/login", 
+    				"/api/v1/user/logout", 
+    				"/api/v1/user/sign-up").permitAll()
     		.anyRequest().authenticated()
             	.and()
             .csrf() // 추가

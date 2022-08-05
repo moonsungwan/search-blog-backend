@@ -37,7 +37,7 @@ public class User extends BaseEntity {
     @Column(name = "NICK_NAME", nullable = false)
     private String nickName;
 
-    @Builder(builderClassName = "InsertUser", builderMethodName = "InsertUser")
+    @Builder(builderClassName = "Insert", builderMethodName = "Insert")
     public User(String loginId, String password, String nickName) {
         this.loginId = loginId;
         this.password = password;

@@ -33,20 +33,6 @@ public class SearchHistoryService {
 				  													  .map(history -> modelMapper.map(history, SearchHistoryResponse.class))
 				  													  .collect(Collectors.toList());
 		
-		List<SearchHistoryResponse> response2 = searchHistoryRepository.findTop10ByOrderBySearchCountDesc()
-				  	.stream()
-				  .map(history -> modelMapper.map(history, SearchHistoryResponse.class))
-				  .collect(Collectors.toList());
-
-		searchHistoryRepository.findTop10ByOrderBySearchCountDesc().forEach(name -> {
-		    System.out.println("11 : "+name.getSearchWord());
-		});
-		
-		
-		for (SearchHistoryResponse searchHistoryResponse : response) {
-			System.out.println("gg" + searchHistoryResponse.getSearchWord());
-		}
-		
 		return new ApiResponseEntity<List<SearchHistoryResponse>>(response, MessageCode.SUCCEED);
 	}
 	
@@ -55,11 +41,11 @@ public class SearchHistoryService {
 		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchHistoryInsertRequest.getSearchWord());
 		
 		if (ObjectUtils.isEmpty(searchHistory)) {
-			searchHistory = SearchHistory.InsertSearchHistory()
+			searchHistory = SearchHistory.Insert()
 										 .searchWord(searchHistoryInsertRequest.getSearchWord())
 										 .build();
 		} else {
-			searchHistory = SearchHistory.UpdateSearchHistory()
+			searchHistory = SearchHistory.Update()
 										 .id(searchHistory.getId())
 					 					 .searchWord(searchHistoryInsertRequest.getSearchWord())
 					 					 .searchCount(searchHistory.getSearchCount())

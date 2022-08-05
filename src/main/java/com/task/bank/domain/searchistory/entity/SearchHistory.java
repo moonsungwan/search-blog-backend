@@ -22,12 +22,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SearchHistory extends BaseEntity {
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 	
     /* 검색어 */
+	@Id
     @Column(name = "SEARCH_WORD")
     private String searchWord;
 
@@ -35,12 +36,12 @@ public class SearchHistory extends BaseEntity {
     @Column(name = "SEARCH_COUNT")
     private Integer searchCount = 1;
 
-    @Builder(builderClassName = "InsertSearchHistory", builderMethodName = "InsertSearchHistory")
+    @Builder(builderClassName = "Insert", builderMethodName = "Insert")
     public SearchHistory(String searchWord) {
         this.searchWord = searchWord;
     }
     
-    @Builder(builderClassName = "UpdateSearchHistory", builderMethodName = "UpdateSearchHistory")
+    @Builder(builderClassName = "Update", builderMethodName = "Update")
     public SearchHistory(Long id, String searchWord, int searchCount) {
     	this.id = id;
     	this.searchWord = searchWord;

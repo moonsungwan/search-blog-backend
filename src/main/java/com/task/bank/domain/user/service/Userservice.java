@@ -37,7 +37,7 @@ public class Userservice {
 	public ApiResponseEntity<UserLoginResponse> signUp(UserInsertRequest userInsertRequest) {
 		checkDuplication(userInsertRequest);
 
-		User user = User.InsertUser()
+		User user = User.Insert()
 						.loginId(userInsertRequest.getLoginId())
 						.password(passwordEncoder.encode(userInsertRequest.getPassword()))
 						.nickName(userInsertRequest.getNickName())
