@@ -19,7 +19,7 @@ public enum MessageCode {
 
     FAILED(HttpStatus.BAD_REQUEST, "실패하였습니다."),
     
-    INVALID_AUTH_TOKEN(HttpStatus.UNAUTHORIZED, "권한 정보가 없는 토큰입니다."),
+    INVALID_AUTH_TOKEN(HttpStatus.UNAUTHORIZED, "토큰 정보가 유효하지 않습니다."),
     INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "잘못된 비밀번호입니다."),
     
     BUSINESS_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, "업무로직에서 에러가 발생했습니다."),

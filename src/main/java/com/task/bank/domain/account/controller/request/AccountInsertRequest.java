@@ -1,4 +1,4 @@
-package com.task.bank.domain.user.controller.request;
+package com.task.bank.domain.account.controller.request;
 
 import javax.validation.constraints.NotBlank;
 
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserInsertRequest {
+public class AccountInsertRequest {
 
 	/* 로그인 ID */
 	@ApiParam(value = "loginId", required = true)

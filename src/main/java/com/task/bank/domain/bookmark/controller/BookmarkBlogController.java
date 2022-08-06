@@ -17,6 +17,7 @@ import com.task.bank.domain.bookmark.controller.request.BookmarkBlogInsertReques
 import com.task.bank.domain.bookmark.controller.response.BookmarkBlogResponse;
 import com.task.bank.domain.bookmark.service.BookmarkBlogService;
 import com.task.bank.global.entity.ApiResponseEntity;
+import com.task.bank.global.utils.SecurityUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,19 +32,20 @@ public class BookmarkBlogController {
 	private final BookmarkBlogService bookmarkBlogService;
 	
 	@ApiOperation(value = "북마크 즐겨찾기 목록", notes="북마크 즐겨찾기 목록")
-	@GetMapping("/search-history")
+	@GetMapping("/bookmark-blog")
 	public ApiResponseEntity<List<BookmarkBlogResponse>> find()   {
+		System.out.println("T : " + SecurityUtil.getCurrentLoginId());
 		return bookmarkBlogService.find();
 	}
 	
 	@ApiOperation(value = "북마크 즐겨찾기 등록", notes="북마크 즐겨찾기 등록")
-	@PostMapping("/search-history")
+	@PostMapping("/bookmark-blog")
 	public ApiResponseEntity<Boolean> save(@Valid @RequestBody BookmarkBlogInsertRequest bookmarkBlogInsertRequest)   {
 		return bookmarkBlogService.save(bookmarkBlogInsertRequest);
 	}
 	
 	@ApiOperation(value = "북마크 즐겨찾기 삭제", notes="북마크 즐겨찾기 삭제")
-	@DeleteMapping("/search-history/{id}")
+	@DeleteMapping("/bookmark-blog/{id}")
 	public ApiResponseEntity<Boolean> delete(@PathVariable Long id)   {
 		return bookmarkBlogService.delete(id);
 	}

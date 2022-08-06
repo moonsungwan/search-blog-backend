@@ -53,9 +53,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     		.addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
     		.authorizeRequests()
     		.antMatchers(
-    				"/api/v1/user/login", 
-    				"/api/v1/user/logout", 
-    				"/api/v1/user/sign-up").permitAll()
+    				"/api/v1/account/login", 
+    				"/api/v1/account/logout", 
+    				"/api/v1/account/sign-up").permitAll()
     		.anyRequest().authenticated()
             	.and()
             .csrf() // 추가

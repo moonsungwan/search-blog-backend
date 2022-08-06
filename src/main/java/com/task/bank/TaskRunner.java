@@ -3,7 +3,6 @@ package com.task.bank;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 import javax.sql.DataSource;
 
@@ -39,8 +38,8 @@ public class TaskRunner implements ApplicationRunner {
 		String now = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSS"));
 		String encodePassword = passwordEncoder.encode("1234");
 		
-		jdbcTemplate.execute("INSERT INTO USER SET ID='1', LOGIN_ID='userA', PASSWORD='" + encodePassword + "', NICK_NAME='사용자A', CREATED_AT='" + now + "', CREATED_BY='ADMIN', UPDATED_AT='" + now + "', UPDATED_BY='ADMIN'");
-		jdbcTemplate.execute("INSERT INTO USER SET ID='2', LOGIN_ID='userB', PASSWORD='" + encodePassword + "', NICK_NAME='사용자B', CREATED_AT='" + now + "', CREATED_BY='ADMIN', UPDATED_AT='" + now + "', UPDATED_BY='ADMIN'");
-		jdbcTemplate.execute("INSERT INTO USER SET ID='3', LOGIN_ID='userC', PASSWORD='" + encodePassword + "', NICK_NAME='사용자C', CREATED_AT='" + now + "', CREATED_BY='ADMIN', UPDATED_AT='" + now + "', UPDATED_BY='ADMIN'");
+		jdbcTemplate.execute("INSERT INTO ACCOUNT SET ID='1', LOGIN_ID='accountA', PASSWORD='" + encodePassword + "', NICK_NAME='사용자A', CREATED_AT='" + now + "', CREATED_BY='ADMIN', UPDATED_AT='" + now + "', UPDATED_BY='ADMIN'");
+		jdbcTemplate.execute("INSERT INTO ACCOUNT SET ID='2', LOGIN_ID='accountB', PASSWORD='" + encodePassword + "', NICK_NAME='사용자B', CREATED_AT='" + now + "', CREATED_BY='ADMIN', UPDATED_AT='" + now + "', UPDATED_BY='ADMIN'");
+		jdbcTemplate.execute("INSERT INTO ACCOUNT SET ID='3', LOGIN_ID='accountC', PASSWORD='" + encodePassword + "', NICK_NAME='사용자C', CREATED_AT='" + now + "', CREATED_BY='ADMIN', UPDATED_AT='" + now + "', UPDATED_BY='ADMIN'");
 	}
 }

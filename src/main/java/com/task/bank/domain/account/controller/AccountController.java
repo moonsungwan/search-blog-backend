@@ -1,4 +1,4 @@
-package com.task.bank.domain.user.controller;
+package com.task.bank.domain.account.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.task.bank.domain.user.controller.request.UserInsertRequest;
-import com.task.bank.domain.user.controller.request.UserLoginRequest;
-import com.task.bank.domain.user.controller.response.UserLoginResponse;
-import com.task.bank.domain.user.service.Userservice;
+import com.task.bank.domain.account.controller.request.AccountInsertRequest;
+import com.task.bank.domain.account.controller.request.AccountLoginRequest;
+import com.task.bank.domain.account.controller.response.AccountLoginResponse;
+import com.task.bank.domain.account.service.Accountservice;
 import com.task.bank.global.entity.ApiResponseEntity;
 
 import io.swagger.annotations.Api;
@@ -21,22 +21,22 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@Api(value = "MemberController", tags = "1. 인증 - 인증 API")
+@Api(value = "AccountController", tags = "1. 계정 - 인증 API")
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/user")
-public class UserController {
+@RequestMapping("/api/v1/account")
+public class AccountController {
 
-	private final Userservice userservice;
+	private final Accountservice userservice;
 	
 	@ApiOperation(value = "회원가입", notes="회원가입")
 	@PostMapping("/sign-up")
-	public ApiResponseEntity<UserLoginResponse> signUp(@Valid @RequestBody UserInsertRequest userRequest)   {
+	public ApiResponseEntity<AccountLoginResponse> signUp(@Valid @RequestBody AccountInsertRequest userRequest)   {
 		return userservice.signUp(userRequest);
 	}
 
 	@ApiOperation(value = "로그인", notes="로그인")
 	@PostMapping("/login")
-	public ApiResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest userLoginRequest)   {
+	public ApiResponseEntity<AccountLoginResponse> login(@Valid @RequestBody AccountLoginRequest userLoginRequest)   {
 		return userservice.login(userLoginRequest);
 	}
 	

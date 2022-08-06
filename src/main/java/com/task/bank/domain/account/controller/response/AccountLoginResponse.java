@@ -1,4 +1,4 @@
-package com.task.bank.domain.user.controller.response;
+package com.task.bank.domain.account.controller.response;
 
 
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class UserLoginResponse {
+public class AccountLoginResponse {
 
 	/* 로그인 ID */
 	private String loginId;

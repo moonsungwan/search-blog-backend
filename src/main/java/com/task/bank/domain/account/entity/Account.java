@@ -1,4 +1,4 @@
-package com.task.bank.domain.user.entity;
+package com.task.bank.domain.account.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,15 +10,17 @@ import javax.persistence.Table;
 import com.task.bank.global.entity.BaseEntity;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Table(name = "USER")
+@Table(name = "ACCOUNT")
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseEntity {
+public class Account extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +40,7 @@ public class User extends BaseEntity {
     private String nickName;
 
     @Builder(builderClassName = "Insert", builderMethodName = "Insert")
-    public User(String loginId, String password, String nickName) {
+    public Account(String loginId, String password, String nickName) {
         this.loginId = loginId;
         this.password = password;
         this.nickName = nickName;

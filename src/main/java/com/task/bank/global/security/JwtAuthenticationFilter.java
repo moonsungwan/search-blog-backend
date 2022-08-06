@@ -30,9 +30,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     		log.info("-----------------------------------------------------------------");
     		
             if (!ObjectUtils.isEmpty(jwt) && JwtTokenProvider.validateToken(jwt)) {
-                String userId = JwtTokenProvider.getUserIdFromJWT(jwt); //jwt에서 사용자 id를 꺼낸다.
+                String loginId = JwtTokenProvider.getUserIdFromJWT(jwt); //jwt에서 사용자 id를 꺼낸다.
 
-                UserAuthentication authentication = new UserAuthentication(userId, null, null); //id를 인증한다.
+                UserAuthentication authentication = new UserAuthentication(loginId, null, null); //id를 인증한다.
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); //기본적으로 제공한 details 세팅
 
                 SecurityContextHolder.getContext().setAuthentication(authentication); //세션에서 계속 사용하기 위해 securityContext에 Authentication 등록

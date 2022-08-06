@@ -9,7 +9,6 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import com.task.bank.domain.bookmark.controller.request.BookmarkBlogInsertRequest;
-import com.task.bank.domain.bookmark.controller.request.BookmarkBlogUpdateRequest;
 import com.task.bank.global.entity.BaseEntity;
 
 import lombok.AccessLevel;
@@ -47,14 +46,6 @@ public class BookmarkBlog extends BaseEntity {
     	this.loginId = bookmarkBlogInsertRequest.getLoginId();
     	this.bookmarkTitle = bookmarkBlogInsertRequest.getBookmarkTitle();
     	this.bookmarkUrl = bookmarkBlogInsertRequest.getBookmarkUrl();
-    }
-    
-    @Builder(builderClassName = "Update", builderMethodName = "Update")
-    public BookmarkBlog(BookmarkBlogUpdateRequest bookmarkBlogUpdateRequest) {
-    	this.id = bookmarkBlogUpdateRequest.getId();
-    	this.loginId = bookmarkBlogUpdateRequest.getLoginId();
-    	this.bookmarkTitle = bookmarkBlogUpdateRequest.getBookmarkTitle();
-    	this.bookmarkUrl = bookmarkBlogUpdateRequest.getBookmarkUrl();
     }
     
 }
