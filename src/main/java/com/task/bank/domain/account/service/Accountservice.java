@@ -51,9 +51,9 @@ public class Accountservice {
 
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<AccountLoginResponse> login(AccountLoginRequest accountLoginRequest) {
-		Account selectAccount = getAccount(accountRepository.findByLoginId(accountLoginRequest.getLoginId()));
+		Account findAccount = getAccount(accountRepository.findByLoginId(accountLoginRequest.getLoginId()));
 		
-        if (!passwordEncoder.matches(accountLoginRequest.getPassword(), selectAccount.getPassword())) {
+        if (!passwordEncoder.matches(accountLoginRequest.getPassword(), findAccount.getPassword())) {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
         }
 

@@ -2,6 +2,7 @@ package com.task.bank.domain.bookmark.service;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ import com.task.bank.domain.bookmark.controller.response.BookmarkBlogResponse;
 import com.task.bank.domain.bookmark.entity.BookmarkBlog;
 import com.task.bank.domain.bookmark.repository.BookmarkBlogRepository;
 import com.task.bank.global.entity.ApiResponseEntity;
+import com.task.bank.global.exception.CustomException;
 import com.task.bank.global.message.MessageCode;
+import com.task.bank.global.utils.SecurityUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +29,12 @@ public class BookmarkBlogService {
 		
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<List<BookmarkBlogResponse>> find() {
-		return new ApiResponseEntity<List<BookmarkBlogResponse>>(null, MessageCode.SUCCEED);
+		List<BookmarkBlogResponse> response = bookmarkBlogRepository.findByLoginId(SecurityUtil.getCurrentLoginId())
+				  													 .stream()
+				  													 .map(bookmark -> modelMapper.map(bookmark, BookmarkBlogResponse.class))
+				  													 .collect(Collectors.toList());
+		
+		return new ApiResponseEntity<List<BookmarkBlogResponse>>(response, MessageCode.SUCCEED);
 	}
 	
 	@Transactional
@@ -42,7 +50,10 @@ public class BookmarkBlogService {
 	
 	@Transactional
 	public ApiResponseEntity<Boolean> delete(Long id) {
-		bookmarkBlogRepository.deleteById(id);
+		BookmarkBlog findBookmarkBlog =  bookmarkBlogRepository.findById(id)
+															   .orElseThrow(() -> new CustomException(MessageCode.NO_CONTENT));
+		
+		bookmarkBlogRepository.delete(findBookmarkBlog);
 		
 		return new ApiResponseEntity<Boolean>(true, MessageCode.DELETED);
 	}

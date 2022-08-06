@@ -12,8 +12,6 @@ public class BookmarkBlogResponse {
  
 	private Long id;
 
-	private String loginId;
-
 	private String bookmarkTitle;
 	
 	private String bookmarkUrl;

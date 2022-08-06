@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 import com.task.bank.domain.bookmark.controller.request.BookmarkBlogInsertRequest;
 import com.task.bank.global.entity.BaseEntity;
+import com.task.bank.global.utils.SecurityUtil;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@IdClass(BookmarkBlogPK.class)
 @Table(name = "BOOKMARK_BLOG")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BookmarkBlog extends BaseEntity {
@@ -29,7 +28,6 @@ public class BookmarkBlog extends BaseEntity {
 	private Long id;
 	
     /* 로그인 ID */
-	@Id
     @Column(name = "LOGIN_ID", nullable = false)
     private String loginId;
 
@@ -43,7 +41,7 @@ public class BookmarkBlog extends BaseEntity {
 
     @Builder(builderClassName = "Insert", builderMethodName = "Insert")
     public BookmarkBlog(BookmarkBlogInsertRequest bookmarkBlogInsertRequest) {
-    	this.loginId = bookmarkBlogInsertRequest.getLoginId();
+    	this.loginId = SecurityUtil.getCurrentLoginId();
     	this.bookmarkTitle = bookmarkBlogInsertRequest.getBookmarkTitle();
     	this.bookmarkUrl = bookmarkBlogInsertRequest.getBookmarkUrl();
     }

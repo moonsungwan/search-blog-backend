@@ -17,7 +17,6 @@ import com.task.bank.domain.bookmark.controller.request.BookmarkBlogInsertReques
 import com.task.bank.domain.bookmark.controller.response.BookmarkBlogResponse;
 import com.task.bank.domain.bookmark.service.BookmarkBlogService;
 import com.task.bank.global.entity.ApiResponseEntity;
-import com.task.bank.global.utils.SecurityUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +33,6 @@ public class BookmarkBlogController {
 	@ApiOperation(value = "북마크 즐겨찾기 목록", notes="북마크 즐겨찾기 목록")
 	@GetMapping("/bookmark-blog")
 	public ApiResponseEntity<List<BookmarkBlogResponse>> find()   {
-		System.out.println("T : " + SecurityUtil.getCurrentLoginId());
 		return bookmarkBlogService.find();
 	}
 	
