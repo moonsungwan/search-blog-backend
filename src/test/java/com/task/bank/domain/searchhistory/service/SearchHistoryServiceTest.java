@@ -6,19 +6,16 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.task.bank.domain.searchhistory.controller.response.SearchHistoryResponse;
 import com.task.bank.domain.searchhistory.entity.SearchHistory;
 import com.task.bank.domain.searchhistory.repository.SearchHistoryRepository;
 
@@ -33,14 +30,10 @@ class SearchHistoryServiceTest {
     @Autowired
     private SearchHistoryRepository searchHistoryRepository;
 
-	private ModelMapper modelMapper;
-	
 	private String searchWord = "조회수테스트";
 
 	@Before
 	void setUp() {
-		this.modelMapper = new ModelMapper();
-		
 		searchHistoryRepository.save(SearchHistory.Insert()
 				 								  .searchWord(searchWord)
 				 								  .build());	
@@ -70,8 +63,6 @@ class SearchHistoryServiceTest {
         countDownLatch.await();
         
         SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchWord);
-        System.out.println("hhi : " + searchHistory.getSearchCount());
-        
 		// then
 	}
 	
@@ -81,13 +72,10 @@ class SearchHistoryServiceTest {
 	
 		// given
 		// when
-		List<SearchHistoryResponse> response = searchHistoryRepository.findTop10ByOrderBySearchCountDesc()
-				  													  .stream()
-				  													  .map(history -> modelMapper.map(history, SearchHistoryResponse.class))
-				  													  .collect(Collectors.toList());
+		List<SearchHistory> list = searchHistoryRepository.findTop10ByOrderBySearchCountDesc();
 		
 		// then
-		assertTrue(response.size() <= 10);
+		assertTrue(list.size() <= 10);
 	}
 
 }

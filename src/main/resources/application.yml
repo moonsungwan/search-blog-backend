@@ -27,3 +27,8 @@ open-api:
     kakao: https://dapi.kakao.com
   client-key:
     kakao: 1740a2c146853458a23205c6cb02fb2b
+    
+logging:
+  level:
+    org.hibernate.SQL: debug    # Logger
+    org.hibernate.type: trace   # Show Query Parameter

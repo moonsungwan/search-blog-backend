@@ -7,9 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.task.bank.domain.bookmark.controller.request.BookmarkBlogInsertRequest;
 import com.task.bank.global.entity.BaseEntity;
-import com.task.bank.global.utils.SecurityUtil;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -40,10 +38,10 @@ public class BookmarkBlog extends BaseEntity {
     private String bookmarkUrl;
 
     @Builder(builderClassName = "Insert", builderMethodName = "Insert")
-    public BookmarkBlog(BookmarkBlogInsertRequest bookmarkBlogInsertRequest) {
-    	this.loginId = SecurityUtil.getCurrentLoginId();
-    	this.bookmarkTitle = bookmarkBlogInsertRequest.getBookmarkTitle();
-    	this.bookmarkUrl = bookmarkBlogInsertRequest.getBookmarkUrl();
+    public BookmarkBlog(String loginId, String bookmarkTitle, String bookmarkUrl) {
+    	this.loginId = loginId;
+    	this.bookmarkTitle = bookmarkTitle;
+    	this.bookmarkUrl = bookmarkUrl;
     }
     
 }

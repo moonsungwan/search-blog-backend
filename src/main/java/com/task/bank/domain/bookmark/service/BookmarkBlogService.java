@@ -29,18 +29,20 @@ public class BookmarkBlogService {
 		
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<List<BookmarkBlogResponse>> find() {
-		List<BookmarkBlogResponse> response = bookmarkBlogRepository.findByLoginId(SecurityUtil.getCurrentLoginId())
+		List<BookmarkBlogResponse> bookmarkBlogs = bookmarkBlogRepository.findByLoginId(SecurityUtil.getCurrentLoginId())
 				  													.stream()
 				  													.map(bookmark -> modelMapper.map(bookmark, BookmarkBlogResponse.class))
 				  													.collect(Collectors.toList());
 		
-		return new ApiResponseEntity<List<BookmarkBlogResponse>>(response, MessageCode.SUCCEED);
+		return new ApiResponseEntity<List<BookmarkBlogResponse>>(bookmarkBlogs, MessageCode.SUCCEED);
 	}
 	
 	@Transactional
 	public ApiResponseEntity<Boolean> save(BookmarkBlogInsertRequest blogInsertRequest) {
 		BookmarkBlog bookmarkBlog = BookmarkBlog.Insert()
-												.bookmarkBlogInsertRequest(blogInsertRequest)
+												.loginId(SecurityUtil.getCurrentLoginId())
+												.bookmarkTitle(blogInsertRequest.getBookmarkTitle())
+												.bookmarkUrl(blogInsertRequest.getBookmarkUrl())
 												.build();
 		
 		bookmarkBlogRepository.save(bookmarkBlog);
