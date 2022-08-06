@@ -16,8 +16,8 @@ public class BlogService {
 
 	private final KAkAOClient kakaoClient;
 	
-	public ApiResponseEntity<BlogResponse> find(String query, String sort, int page) {
-		BlogResponse blogResponse = kakaoClient.searchBlog(query, sort, page);
+	public ApiResponseEntity<BlogResponse> find(String query, String sort, Integer page, Integer size) {
+		BlogResponse blogResponse = kakaoClient.searchBlog(query, sort, page, size);
 		
 		return new ApiResponseEntity<BlogResponse>(blogResponse, MessageCode.SUCCEED);
 	}

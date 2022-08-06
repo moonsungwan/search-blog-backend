@@ -10,6 +10,9 @@ import com.task.bank.domain.blog.controller.response.kakao.BlogResponse;
 public interface KAkAOClient {
 
     @GetMapping(value = "/v2/search/blog")
-    BlogResponse searchBlog(@RequestParam("query") String query, @RequestParam("sort") String sort, @RequestParam("page") int page);
+    BlogResponse searchBlog(@RequestParam("query") String query
+    					  , @RequestParam("sort") String sort
+    					  , @RequestParam("page") int page
+    					  , @RequestParam("size") int size);
 	
 }
