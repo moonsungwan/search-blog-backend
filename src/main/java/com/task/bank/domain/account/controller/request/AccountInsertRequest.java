@@ -1,6 +1,7 @@
 package com.task.bank.domain.account.controller.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
@@ -12,6 +13,7 @@ public class AccountInsertRequest {
 
 	/* 로그인 ID */
 	@ApiParam(value = "loginId", required = true)
+	@Size(max = 15, message = "{validation.size.too_long} (15)")
 	@NotBlank(message="{validation.notblank}")
 	private String loginId;
 
@@ -22,6 +24,7 @@ public class AccountInsertRequest {
 	
 	/* 닉네임 */
 	@ApiParam(value = "nickName", required = true)
+	@Size(max = 15, message = "{validation.size.too_long} (15)")
 	@NotBlank(message="{validation.notblank}")
 	private String nickName;
 	

@@ -1,4 +1,4 @@
-package com.task.bank.domain.searchistory.controller.response;
+package com.task.bank.domain.searchhistory.controller.response;
 
 
 import lombok.Getter;

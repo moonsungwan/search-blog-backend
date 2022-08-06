@@ -1,4 +1,4 @@
-package com.task.bank.domain.searchistory.service;
+package com.task.bank.domain.searchhistory.service;
 
 
 import java.util.List;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
-import com.task.bank.domain.searchistory.controller.request.SearchHistoryInsertRequest;
-import com.task.bank.domain.searchistory.controller.response.SearchHistoryResponse;
-import com.task.bank.domain.searchistory.entity.SearchHistory;
-import com.task.bank.domain.searchistory.repository.SearchHistoryRepository;
+import com.task.bank.domain.searchhistory.controller.request.SearchHistoryInsertRequest;
+import com.task.bank.domain.searchhistory.controller.response.SearchHistoryResponse;
+import com.task.bank.domain.searchhistory.entity.SearchHistory;
+import com.task.bank.domain.searchhistory.repository.SearchHistoryRepository;
 import com.task.bank.global.entity.ApiResponseEntity;
 import com.task.bank.global.message.MessageCode;
 

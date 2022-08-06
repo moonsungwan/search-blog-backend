@@ -1,4 +1,4 @@
-package com.task.bank.domain.searchistory.entity;
+package com.task.bank.domain.searchhistory.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +45,13 @@ public class SearchHistory extends BaseEntity {
     public SearchHistory(Long id, String searchWord, int searchCount) {
     	this.id = id;
     	this.searchWord = searchWord;
+    	System.out.println("id : " + id);
+    	System.out.println("searchWord : " + searchWord);
+    	System.out.println("searchCount : " + searchCount);
+    	
     	this.searchCount = searchCount + 1;
+    	
+    	
     }
     
 }

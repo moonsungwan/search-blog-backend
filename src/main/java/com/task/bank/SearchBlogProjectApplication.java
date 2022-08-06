@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableFeignClients
 @EnableJpaAuditing
 @SpringBootApplication
-public class BankTaskProjectApplication {
+public class SearchBlogProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BankTaskProjectApplication.class, args);
+		SpringApplication.run(SearchBlogProjectApplication.class, args);
 	}
 
 }

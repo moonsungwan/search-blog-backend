@@ -1,4 +1,4 @@
-package com.task.bank.domain.searchistory.controller;
+package com.task.bank.domain.searchhistory.controller;
 
 
 import java.util.List;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.task.bank.domain.searchistory.controller.request.SearchHistoryInsertRequest;
-import com.task.bank.domain.searchistory.controller.response.SearchHistoryResponse;
-import com.task.bank.domain.searchistory.service.SearchHistoryService;
+import com.task.bank.domain.searchhistory.controller.request.SearchHistoryInsertRequest;
+import com.task.bank.domain.searchhistory.controller.response.SearchHistoryResponse;
+import com.task.bank.domain.searchhistory.service.SearchHistoryService;
 import com.task.bank.global.entity.ApiResponseEntity;
 
 import io.swagger.annotations.Api;

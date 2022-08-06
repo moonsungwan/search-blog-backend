@@ -1,4 +1,4 @@
-package com.task.bank.domain.searchistory.controller.request;
+package com.task.bank.domain.searchhistory.controller.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,7 +13,7 @@ public class SearchHistoryInsertRequest {
 
 	/* 검색어 */
 	@ApiParam(value = "searchWord", required = true)
-	@Size(max = 10, message = "{validation.size.too_long} (10)")
+	@Size(max = 15, message = "{validation.size.too_long} (15)")
 	@NotBlank(message="{validation.notblank}")
 	private String searchWord;
 	

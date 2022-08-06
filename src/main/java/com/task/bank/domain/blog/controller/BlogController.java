@@ -3,6 +3,7 @@ package com.task.bank.domain.blog.controller;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +28,10 @@ public class BlogController {
 	
 	@ApiOperation(value = "블로그 목록", notes="블로그 목록")
 	@GetMapping("/blog")
-	public ApiResponseEntity<BlogResponse> find(@RequestParam("query") @NotBlank String query
+	public ApiResponseEntity<BlogResponse> find(@RequestParam("query") @NotBlank @Size(max = 15) String query
 											  , @RequestParam(value = "sort") String sort
 											  , @RequestParam(value = "page", defaultValue = "1")  @Max(50) Integer page
-											  , @RequestParam(value = "size", defaultValue = "10") @Max(50) Integer size)   {
+											  , @RequestParam(value = "size", defaultValue = "10") @Max(50) Integer size) {
 		return blogService.find(query, sort, page, size);
 	}
 	

@@ -1,4 +1,4 @@
-package com.task.bank.domain.searchistory.entity;
+package com.task.bank.domain.searchhistory.entity;
 
 import java.io.Serializable;
 
