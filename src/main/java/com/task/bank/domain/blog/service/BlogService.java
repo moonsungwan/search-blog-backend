@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.task.bank.domain.blog.controller.response.kakao.BlogResponse;
 import com.task.bank.global.entity.ApiResponseEntity;
-import com.task.bank.global.feign.KAkAOClient;
+import com.task.bank.global.feign.KAKAOClient;
 import com.task.bank.global.message.MessageCode;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BlogService {
 
-	private final KAkAOClient kakaoClient;
+	private final KAKAOClient kakaoClient;
 	
 	public ApiResponseEntity<BlogResponse> find(String query, String sort, Integer page, Integer size) {
 		BlogResponse blogResponse = kakaoClient.searchBlog(query, sort, page, size);
