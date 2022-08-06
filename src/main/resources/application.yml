@@ -18,12 +18,24 @@ spring:
         
   h2:
     console:
-      enabled: 'true'
+      enabled: true
       settings:
-        web-allow-others: 'true'
-        
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
+        web-allow-others: true
       
+feign:
+  client:
+    config:
+      log-client: # 특정 FeignClient가 아닌 모든 Client에 대해 적용하고자 하는 경우 default 입력
+        loggerLevel: FULL
+        
+logging:
+  level:
+    root: info
+    ads.client: debug # open feign package 로그를 보기 위함.
+    com.client.external: debug
+        
+open-api:
+  url:
+    kakao: https://dapi.kakao.com
+  client-key:
+    kakao: 1740a2c146853458a23205c6cb02fb2b
