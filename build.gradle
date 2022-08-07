@@ -25,15 +25,13 @@ dependencies {
 	
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'		// Feign Config Google Preconditions
     
     runtimeOnly 'com.h2database:h2:1.4.200'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.10'
 
-    compileOnly 'com.querydsl:querydsl-apt:5.0.0' // Feign Config Google Preconditions
-
     annotationProcessor('org.projectlombok:lombok')
-
 }
 
 dependencyManagement {
