@@ -1,13 +1,16 @@
 package com.search.blog;
 
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 @SpringBootTest
 class SearchBlogServiceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @BeforeClass
+    @Sql({"classpath:schema.sql", "classpath:/data.sql"})
+    public static void setUpBeforeClass() throws Exception {
+    	
+    }
+    
 }

@@ -5,25 +5,21 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.search.blog.domain.blog.controller.response.kakao.BlogResponse;
 import com.search.blog.global.feign.KAKAOClient;
-import com.search.blog.global.feign.KAkAOClientConfig;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@RestClientTest(KAKAOClient.class)
-@Import({KAkAOClientConfig.class})
 @DisplayName("2. 블로그 검색")
 class BlogServiceTest {
 
-	@Autowired
-	private KAKAOClient kakaoClient;
+    //test에서 선언시 name속성 추가
+    @MockBean(name = "kakaoClient")
+    KAKAOClient kakaoClient;
 	
 	@Test
     @DisplayName("블로그 검색 (카카오 API)")

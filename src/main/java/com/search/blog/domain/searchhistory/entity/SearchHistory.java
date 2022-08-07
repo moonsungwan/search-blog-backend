@@ -33,6 +33,7 @@ public class SearchHistory extends BaseEntity {
     private String searchWord;
 
     /* 검색 횟수 */
+    @Id
     @Column(name = "SEARCH_COUNT")
     private Integer searchCount = 1;
 
@@ -45,13 +46,7 @@ public class SearchHistory extends BaseEntity {
     public SearchHistory(Long id, String searchWord, int searchCount) {
     	this.id = id;
     	this.searchWord = searchWord;
-    	System.out.println("id : " + id);
-    	System.out.println("searchWord : " + searchWord);
-    	System.out.println("searchCount : " + searchCount);
-    	
     	this.searchCount = searchCount + 1;
-    	
-    	
     }
     
 }

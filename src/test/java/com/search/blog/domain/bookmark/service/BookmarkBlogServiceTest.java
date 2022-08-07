@@ -6,13 +6,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.search.blog.domain.bookmark.controller.request.BookmarkBlogInsertRequest;
@@ -27,12 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 @DisplayName("4. 블로그 즐겨찾기")
 class BookmarkBlogServiceTest {
 
-    @BeforeClass
-    @Sql({"classpath:schema.sql", "classpath:/data.sql"})
-    public static void setUpBeforeClass() throws Exception {
-        log.debug("Test Data Create And Insert!");
-    }
-	
 	@Autowired
 	private BookmarkBlogRepository bookmarkBlogRepository;
 	
