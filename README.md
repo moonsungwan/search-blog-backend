@@ -196,6 +196,8 @@ $ java -jar search-blog-service-0.0.1-SNAPSHOT.jar
 
 ```json
 ?page=1&query=카카오블로그&size=10&sort=accuracy
+
+sort 종류 - accuracy, recency
 ```
 
 #### 응답
