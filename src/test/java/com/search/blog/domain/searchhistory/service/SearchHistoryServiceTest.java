@@ -48,16 +48,12 @@ class SearchHistoryServiceTest {
 		String searchWord = "검색어 저장";
 		
 		// when
-		SearchHistoryInsertRequest searchHistoryInsertRequest = new SearchHistoryInsertRequest();
-		searchHistoryInsertRequest.setId(123122L);
-		searchHistoryInsertRequest.setSearchWord(searchWord);
-
-		searchHistoryService.save(searchHistoryInsertRequest);
+		searchHistoryRepository.save(SearchHistory.Insert().searchWord(searchWord).build());
 
 		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchWord);
 		
 		// then
-		assertTrue(searchWord == searchHistory.getSearchWord());
+		assertTrue(searchWord.equals(searchHistory.getSearchWord()));
 	}
 
 	@Test
