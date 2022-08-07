@@ -1,4 +1,4 @@
-package com.search.blog.global.feign;
+package com.search.blog.global.feign.config;
 
 import com.google.common.base.Preconditions;
 

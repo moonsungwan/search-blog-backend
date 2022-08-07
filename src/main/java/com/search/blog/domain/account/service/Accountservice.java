@@ -39,14 +39,14 @@ public class Accountservice {
 		checkDuplication(accountInsertRequest);
 
 		Account account = Account.Insert()
-						.loginId(accountInsertRequest.getLoginId())
-						.password(passwordEncoder.encode(accountInsertRequest.getPassword()))
-						.nickName(accountInsertRequest.getNickName())
-						.build();
+								 .loginId(accountInsertRequest.getLoginId())
+								 .password(passwordEncoder.encode(accountInsertRequest.getPassword()))
+								 .nickName(accountInsertRequest.getNickName())
+								 .build();
 		
 		accountRepository.save(account);
 
-		return new ApiResponseEntity<AccountLoginResponse>(createAccountLoginResponse(account.getLoginId()));
+		return new ApiResponseEntity<AccountLoginResponse>(createAccountLoginResponse(account));
 	}
 
 	@Transactional(readOnly = true)
@@ -57,7 +57,7 @@ public class Accountservice {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
         }
 
-        return new ApiResponseEntity<AccountLoginResponse>(createAccountLoginResponse(accountLoginRequest.getLoginId()));
+        return new ApiResponseEntity<AccountLoginResponse>(createAccountLoginResponse(findAccount));
 	}
 	
 	public ApiResponseEntity<Boolean> logout(HttpServletRequest request, HttpServletResponse response) {
@@ -70,11 +70,12 @@ public class Accountservice {
 		return new ApiResponseEntity<Boolean>(true, MessageCode.LOGOUT);
 	}
 	
-	private AccountLoginResponse createAccountLoginResponse(String loginId) {
-        Authentication authentication = new UserAuthentication(loginId, null);
+	private AccountLoginResponse createAccountLoginResponse(Account findAccount) {
+        Authentication authentication = new UserAuthentication(findAccount.getLoginId(), null);
         
 		return AccountLoginResponse.builder()
-							 	   .loginId(loginId)
+							 	   .loginId(findAccount.getLoginId())
+							 	   .nickName(findAccount.getNickName())
 							 	   .accessToken(JwtTokenProvider.generateToken(authentication))
 							 	   .build();
 	}

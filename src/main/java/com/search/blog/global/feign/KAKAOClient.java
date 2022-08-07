@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.search.blog.domain.blog.controller.response.kakao.BlogResponse;
+import com.search.blog.global.feign.config.KAkAOClientConfig;
 
 @FeignClient(name = "KakaoClient", url = "${open-api.url.kakao}", configuration = KAkAOClientConfig.class, primary = false)
 public interface KAKAOClient {
