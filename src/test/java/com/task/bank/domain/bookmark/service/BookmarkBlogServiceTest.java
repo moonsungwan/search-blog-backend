@@ -2,27 +2,37 @@ package com.task.bank.domain.bookmark.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.task.bank.domain.bookmark.controller.request.BookmarkBlogInsertRequest;
 import com.task.bank.domain.bookmark.entity.BookmarkBlog;
 import com.task.bank.domain.bookmark.repository.BookmarkBlogRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @DisplayName("4. 블로그 즐겨찾기")
 class BookmarkBlogServiceTest {
 
+    @BeforeClass
+    @Sql({"classpath:schema.sql", "classpath:/data.sql"})
+    public static void setUpBeforeClass() throws Exception {
+        log.debug("Test Data Create And Insert!");
+    }
+	
 	@Autowired
 	private BookmarkBlogRepository bookmarkBlogRepository;
 	
@@ -52,53 +62,22 @@ class BookmarkBlogServiceTest {
 	@Test
 	@DisplayName("블로그 즐겨찾기 삭제")
 	public void 블로그_즐겨찾기_삭제() {
-		// before
-		BookmarkBlogInsertRequest blogInsertRequest = new BookmarkBlogInsertRequest();
-		blogInsertRequest.setLoginId("accountB");;
-		blogInsertRequest.setBookmarkTitle("황의조");
-		blogInsertRequest.setBookmarkUrl("https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%ED%99%A9%EC%9D%98%EC%A1%B0&oquery=%EC%86%90%ED%9D%A5%EB%AF%BC&tqi=hXIlrsprvxZssuGuAnossssstxV-413194");
-		
-		// when
-		BookmarkBlog bookmarkBlog = BookmarkBlog.Insert()
-											    .loginId(blogInsertRequest.getLoginId())
-											    .bookmarkTitle(blogInsertRequest.getBookmarkTitle())
-											    .bookmarkUrl(blogInsertRequest.getBookmarkUrl())
-												.build();
-		
-		bookmarkBlogRepository.save(bookmarkBlog);
-		
 		// given
-		Long id = Long.parseLong(String.valueOf("1"));
+		Long id = (long) 1;
 		
 		// when
 		BookmarkBlog findBookmarkBlog =  bookmarkBlogRepository.findById(id).get();
+		
 		bookmarkBlogRepository.delete(findBookmarkBlog);
 		
-		BookmarkBlog deleteBookmarkBlog =  bookmarkBlogRepository.findById(id).get();
-		
 		// then
-		assertNull(deleteBookmarkBlog);
 	}
 	
 	@Test
 	@DisplayName("블로그 즐겨찾기 목록")
 	public void 블로그_즐겨찾기_목록() {
-		BookmarkBlogInsertRequest blogInsertRequest = new BookmarkBlogInsertRequest();
-		blogInsertRequest.setLoginId("accountB");;
-		blogInsertRequest.setBookmarkTitle("황의조");
-		blogInsertRequest.setBookmarkUrl("https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%ED%99%A9%EC%9D%98%EC%A1%B0&oquery=%EC%86%90%ED%9D%A5%EB%AF%BC&tqi=hXIlrsprvxZssuGuAnossssstxV-413194");
-		
-		// when
-		BookmarkBlog bookmarkBlog = BookmarkBlog.Insert()
-											    .loginId(blogInsertRequest.getLoginId())
-											    .bookmarkTitle(blogInsertRequest.getBookmarkTitle())
-											    .bookmarkUrl(blogInsertRequest.getBookmarkUrl())
-												.build();
-		
-		bookmarkBlogRepository.save(bookmarkBlog);
-		
 		// given
-		String loginId = "accountB";
+		String loginId = "accountC";
 		
 		// when
 		List<BookmarkBlog> bookmarkBlogs = bookmarkBlogRepository.findByLoginId(loginId);
