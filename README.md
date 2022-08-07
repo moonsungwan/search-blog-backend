@@ -150,6 +150,7 @@ $ java -jar search-blog-service-0.0.1-SNAPSHOT.jar
     "success": true,
     "data": {
         "loginId": "accountA",
+        "nickName": "문성완",
         "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2NvdW50QSIsImlhdCI6MTY1OTg2NzE5MSwiZXhwIjoxNjU5ODcwNzkxfQ.GoBl3DmqNycmwFhCdbH54SGW0pqBjIgEREz1ngVJmfJkAm13vsknv0qifZfMZD-Az5zsh7JFufxAkI6BJ9sefw"
     },
     "message": "성공하였습니다."
