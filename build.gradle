@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.task.bank'
+group = 'com.search.blog'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -26,18 +26,11 @@ dependencies {
 	
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
     
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.6.10'
     runtimeOnly 'com.h2database:h2:1.4.200'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.10'
-	testImplementation 'org.springframework.security:spring-security-test'
-
-    compileOnly 'com.querydsl:querydsl-apt:5.0.0'
-
-    annotationProcessor('org.projectlombok:lombok')
-
-	testAnnotationProcessor('org.projectlombok:lombok')
 }
 
 dependencyManagement {
