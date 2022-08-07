@@ -17,9 +17,6 @@ import com.search.blog.domain.bookmark.controller.request.BookmarkBlogInsertRequ
 import com.search.blog.domain.bookmark.entity.BookmarkBlog;
 import com.search.blog.domain.bookmark.repository.BookmarkBlogRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @DisplayName("4. 블로그 즐겨찾기")

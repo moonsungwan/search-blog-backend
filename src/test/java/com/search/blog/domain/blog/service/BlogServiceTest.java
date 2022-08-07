@@ -17,7 +17,6 @@ import com.search.blog.global.feign.KAKAOClient;
 @DisplayName("2. 블로그 검색")
 class BlogServiceTest {
 
-    //test에서 선언시 name속성 추가
     @MockBean(name = "kakaoClient")
     KAKAOClient kakaoClient;
 	
