@@ -9,6 +9,7 @@
 - `ERD`
 - `API 명세`
 - `접근/해결방식`
+- `결과 화면`
 
 ---
 
@@ -339,12 +340,20 @@ sort 종류 - accuracy, recency
 ## 접근/해결방식
 * ### 계정 인증
     * JWT 기반 Spring Security 사용
+    * 회원 가입 시 응답받은 토큰 값으로 메인 화면 (블로그 목록) 이동
     * 최초 로그인 시 응답받은 토큰 값으로 API 호출
 * ### 블로그 검색
     * Feign Cient 사용
     * 카카오 오픈 API용 Feign Client Config 생성
     * #### ***분리 이유***
       * NAVER 오픈 API 사용시 도메인 및 Client Key 분리를 위함
+    * 블로그 검색 목록에서 25개 단위로 페이징 출력
+    * 블로그 제목 클릭시 북마크 URL 새창 열기
+    * 기본 검색 조건 
+      * '정확도순'
+      * 최초 진입시 검색결과가 없으면 목록 출력 하지 않음
+    * 검색시 인기검색어 등록 API 호출
+    * 페이지 이동 및 정렬순서 변경시 인기검색어 목록 갱신
 * ### 인기 검색어
     * 프론트에서 검색어 입력시 DB에 검색어 저장
     * 검색어 카운트 순으로 조회
@@ -352,5 +361,21 @@ sort 종류 - accuracy, recency
     * #### ***추가되면 좋을 기능***
       * 추후 Redis Sorted set 이용하여 개선
 * ### 북마크 즐겨찾기
-    * 같은 블로그 URL 주소로 다르게 이름 저장 할 수 있도록 구현
-    * 북마크 저장시 서버에서 LoginID 불러와 저장 (JWT)
+    * 로그인 한 정보에 맞는 북마크 목록 및 삭제
+    * 같은 블로그 중복 저장되도록 처리
+    * #### ***이유***
+      * 북마크 URL로 PK를 설정하기에는 사이즈가 크다고 생각
+    * 북마크 제목 클릭시 북마크 URL 새창 열기 
+---
+## 결과화면
+* ### 로그인
+![image](https://user-images.githubusercontent.com/18672444/183444777-5e6f1b07-797f-46a0-b46d-67d242c5d53d.png)
+
+* ### 회원가입
+![image](https://user-images.githubusercontent.com/18672444/183445004-62d3fddf-46df-4ac6-8491-e8f134d0060e.png)
+
+* ### 블로그 검색
+![image](https://user-images.githubusercontent.com/18672444/183445249-ad1af8b6-e27d-4641-b43b-d8396acdd50a.png)
+
+* ### 북마크
+![image](https://user-images.githubusercontent.com/18672444/183445438-2fd32b1e-e166-4191-80df-9c1302a240d8.png)
