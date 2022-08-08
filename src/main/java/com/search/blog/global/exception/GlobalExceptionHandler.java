@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
         return ErrorResponse.toResponseEntity(e.getMessageCode());
     }
 
-    @ExceptionHandler(FeignException.class)
+    @ExceptionHandler(value = { FeignException.class })
     public ResponseEntity<ErrorResponse> feignExceptionHandler(FeignException feignException) throws JsonProcessingException {
         String responseJson = feignException.contentUTF8();
         Map<String, String> responseMap = objectMapper.readValue(responseJson, Map.class);
