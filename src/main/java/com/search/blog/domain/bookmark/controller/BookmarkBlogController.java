@@ -3,7 +3,8 @@ package com.search.blog.domain.bookmark.controller;
 
 import java.util.List;
 
-import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public class BookmarkBlogController {
 	
 	@ApiOperation(value = "북마크 즐겨찾기 등록", notes="북마크 즐겨찾기 등록")
 	@PostMapping("/bookmark-blog")
-	public ApiResponseEntity<Boolean> save(@Validated @RequestBody BookmarkBlogInsertRequest bookmarkBlogInsertRequest)   {
+	public ApiResponseEntity<Boolean> save(@Valid @RequestBody BookmarkBlogInsertRequest bookmarkBlogInsertRequest)   {
 		return bookmarkBlogService.save(bookmarkBlogInsertRequest);
 	}
 	
