@@ -20,7 +20,7 @@ public class SearchHistoryInsertRequest {
 	
 	/* 검색어 */
 	@ApiParam(value = "searchWord", required = true)
-	@Size(max = 15, message = "{validation.size.too_long} (15)")
+	@Size(max = 50, message = "{validation.size.too_long} (50)")
 	@NotBlank(message="{validation.notblank}")
 	private String searchWord;
 	

@@ -69,7 +69,7 @@ class AccountserviceTest {
 		
 		// when
 		Account saveAccount = accountRepository.save(account);
-		Account loginAccount = accountRepository.findByLoginId(loginId).get();
+		Account loginAccount = accountRepository.findByLoginId(loginId);
 		
 		// then
 		assertNotNull(loginAccount);

@@ -1,7 +1,5 @@
 package com.search.blog.domain.account.service;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -51,7 +49,11 @@ public class Accountservice {
 
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<AccountLoginResponse> login(AccountLoginRequest accountLoginRequest) {
-		Account findAccount = getAccount(accountRepository.findByLoginId(accountLoginRequest.getLoginId()));
+		Account findAccount = accountRepository.findByLoginId(accountLoginRequest.getLoginId());
+		
+		if (ObjectUtils.isEmpty(findAccount)) {
+			throw new CustomException(MessageCode.INVALID_USER);
+		}	
 		
         if (!passwordEncoder.matches(accountLoginRequest.getPassword(), findAccount.getPassword())) {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
@@ -86,8 +88,4 @@ public class Accountservice {
 		}
 	}
 	
-	private Account getAccount(Optional<Account> account) {
-		return account.orElseThrow(() -> new CustomException(MessageCode.NO_CONTENT));
-	}
-
 }

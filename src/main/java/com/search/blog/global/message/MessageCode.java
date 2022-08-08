@@ -19,6 +19,7 @@ public enum MessageCode {
 
     FAILED(HttpStatus.BAD_REQUEST, "실패하였습니다."),
     
+    INVALID_USER(HttpStatus.UNAUTHORIZED, "잘못된 계정입니다."),
     INVALID_AUTH_TOKEN(HttpStatus.UNAUTHORIZED, "토큰 정보가 유효하지 않습니다."),
     INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "잘못된 비밀번호입니다."),
     
