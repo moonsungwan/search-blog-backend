@@ -8,6 +8,7 @@
 - `테스트 방법`
 - `ERD`
 - `API 명세`
+- `외부 라이브러리`
 - `접근/해결방식`
 - `결과 화면`
 
@@ -25,7 +26,8 @@
 분야| stack |
 --|--|
  |언어 | JAVA 8 |
- |서버 | JPA, Spring Boot, Spring Validation, Spring Security(JWT), Feign Client |
+ |BE | Spring Boot, JPA, Spring Validation, Spring Security(JWT), Feign Client |
+ |FE| Vue |
  |DB | H2 |
  | IDE | 이클립스
   |빌드 툴 | Gradle |
@@ -41,13 +43,25 @@
 - Git, Java, Lombok 은 설치되어 있다고 가정.
 ```
 마스터 브랜치 기준
-$ https://github.com/moonsungwan/search-blog-service.git
+
+백엔드 
+$ https://github.com/moonsungwan/search-blog-backend.git
+
+프론트엔드
+$ https://github.com/moonsungwan/search-blog-frontend.git
 ```
-### JAR 파일 싱생
+### 백엔드 JAR 파일 실행
 - 다운로그 링크 : https://github.com/moonsungwan/search-blog-service/blob/master/src/main/resources/search-blog-backend-0.0.1-SNAPSHOT
 ```
 $ java -jar search-blog-backend-0.0.1-SNAPSHOT
 ```
+### 프론트엔드 실행
+- 해당 폴더에서 아래 명령어 실행
+```
+$ npm install
+$ npm run serve
+```
+- 실행 링크 : http://localhost:3000/login
 
 
 ### 이클립스 기준
@@ -337,6 +351,13 @@ sort 종류 - accuracy, recency
 }
 ```
 ---
+## 외부 라이브러리
+* ### FE
+    * vue-pagination-2 (페이징 처리)
+    * vue-toastification (토스트 경고창)
+* ### BE
+    * ModelMapper (entity -> response DTO 변환용)
+---
 ## 접근/해결방식
 * ### 계정 인증
     * JWT 기반 Spring Security 사용
@@ -379,3 +400,6 @@ sort 종류 - accuracy, recency
 
 * ### 북마크
 ![image](https://user-images.githubusercontent.com/18672444/183445438-2fd32b1e-e166-4191-80df-9c1302a240d8.png)
+=======
+![image](https://user-images.githubusercontent.com/18672444/183445438-2fd32b1e-e166-4191-80df-9c1302a240d8.png)
+
