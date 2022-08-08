@@ -53,7 +53,7 @@ $ https://github.com/moonsungwan/search-blog-frontend.git
 ### 백엔드 JAR 파일 실행
 - 다운로그 링크 : https://github.com/moonsungwan/search-blog-service/blob/master/src/main/resources/search-blog-backend-0.0.1-SNAPSHOT
 ```
-$ java -jar search-blog-backend-0.0.1-SNAPSHOT
+$ java -jar search-blog-backend-0.0.1-SNAPSHOT.jar
 ```
 ### 프론트엔드 실행
 - 해당 폴더에서 아래 명령어 실행
