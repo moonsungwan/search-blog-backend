@@ -3,8 +3,8 @@ package com.search.blog.domain.account.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +30,13 @@ public class AccountController {
 	
 	@ApiOperation(value = "회원가입", notes="회원가입")
 	@PostMapping("/sign-up")
-	public ApiResponseEntity<AccountLoginResponse> signUp(@Valid @RequestBody AccountInsertRequest userRequest)   {
+	public ApiResponseEntity<AccountLoginResponse> signUp(@Validated @RequestBody AccountInsertRequest userRequest)   {
 		return userservice.signUp(userRequest);
 	}
 
 	@ApiOperation(value = "로그인", notes="로그인")
 	@PostMapping("/login")
-	public ApiResponseEntity<AccountLoginResponse> login(@Valid @RequestBody AccountLoginRequest userLoginRequest)   {
+	public ApiResponseEntity<AccountLoginResponse> login(@Validated @RequestBody AccountLoginRequest userLoginRequest)   {
 		return userservice.login(userLoginRequest);
 	}
 	
