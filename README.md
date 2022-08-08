@@ -43,9 +43,9 @@
 $ https://github.com/moonsungwan/search-blog-service.git
 ```
 ### JAR 파일 싱생
-- 다운로그 링크 : https://github.com/moonsungwan/search-blog-service/blob/master/src/main/resources/search-blog-service-0.0.1-SNAPSHOT.jar
+- 다운로그 링크 : https://github.com/moonsungwan/search-blog-service/blob/master/src/main/resources/search-blog-backend-0.0.1-SNAPSHOT
 ```
-$ java -jar search-blog-service-0.0.1-SNAPSHOT.jar
+$ java -jar search-blog-backend-0.0.1-SNAPSHOT
 ```
 
 
