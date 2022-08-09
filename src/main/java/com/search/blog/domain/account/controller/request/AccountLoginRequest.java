@@ -14,13 +14,13 @@ public class AccountLoginRequest {
 
 	/* 로그인 ID */
 	@ApiParam(value = "loginId", required = true)
-	@Pattern(regexp = "[a-zA-Z1-9]{6,12}", message = "{validation.field.loginId}")
+	@Pattern(regexp = "[a-zA-Z1-9]{6,12}", message = "{validation.field.loginId} (loginId)")
 	@NotBlank(message="{validation.notblank} loginId")
 	private String loginId;
 
 	/* 비밀번호 */
 	@ApiParam(value = "password", required = true)
-	@Size(min = 4, max = 15, message = "{validation.field.password}")
+	@Size(min = 4, max = 15, message = "{validation.field.password} (password)")
 	@NotBlank(message="{validation.notblank} password")
 	private String password;
 

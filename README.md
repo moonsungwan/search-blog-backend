@@ -10,7 +10,6 @@
 - `API 명세`
 - `외부 라이브러리`
 - `접근/해결방식`
-- `결과 화면`
 
 ---
 
@@ -352,9 +351,6 @@ sort 종류 - accuracy, recency
 ```
 ---
 ## 외부 라이브러리
-* ### FE
-    * vue-pagination-2 (페이징 처리)
-    * vue-toastification (토스트 경고창)
 * ### BE
     * ModelMapper (entity -> response DTO 변환용)
 ---
@@ -387,19 +383,5 @@ sort 종류 - accuracy, recency
     * #### ***이유***
       * 북마크 URL로 PK를 설정하기에는 사이즈가 크다고 생각
     * 북마크 제목 클릭시 북마크 URL 새창 열기 
----
-## 결과화면
-* ### 로그인
-![image](https://user-images.githubusercontent.com/18672444/183444777-5e6f1b07-797f-46a0-b46d-67d242c5d53d.png)
 
-* ### 회원가입
-![image](https://user-images.githubusercontent.com/18672444/183445004-62d3fddf-46df-4ac6-8491-e8f134d0060e.png)
-
-* ### 블로그 검색
-![image](https://user-images.githubusercontent.com/18672444/183445249-ad1af8b6-e27d-4641-b43b-d8396acdd50a.png)
-
-* ### 북마크
-![image](https://user-images.githubusercontent.com/18672444/183445438-2fd32b1e-e166-4191-80df-9c1302a240d8.png)
-=======
-![image](https://user-images.githubusercontent.com/18672444/183445438-2fd32b1e-e166-4191-80df-9c1302a240d8.png)
 
