@@ -17,17 +17,17 @@ public class BookmarkBlogInsertRequest {
 	/* 로그인 ID */
 	@ApiModelProperty(hidden = true)
 	private String loginId;
-	
+
 	/* 북마크 제목 */
 	@ApiParam(value = "bookmarkTitle", required = true)
 	@Size(max = 50, message = "{validation.size.too_long} (50)")
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="{validation.notblank} bookmarkTitle")
 	private String bookmarkTitle;
-	
+
 	/* 북마크 URL */
 	@ApiParam(value = "bookmarkUrl", required = true)
 	@Size(max = 50, message = "{validation.size.too_long} (50)")
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="{validation.notblank} bookmarkUrl")
 	private String bookmarkUrl;
-	
+
 }

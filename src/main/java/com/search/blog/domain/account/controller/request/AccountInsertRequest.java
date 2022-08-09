@@ -19,13 +19,13 @@ public class AccountInsertRequest {
 
 	/* 비밀번호 */
 	@ApiParam(value = "password", required = true)
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="password {validation.notblank}")
 	private String password;
-	
+
 	/* 닉네임 */
 	@ApiParam(value = "nickName", required = true)
 	@Size(max = 15, message = "{validation.size.too_long} (15)")
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="nickName {validation.notblank}")
 	private String nickName;
-	
+
 }

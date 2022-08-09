@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
 
     private final ObjectMapper objectMapper;
-    
+
     @ExceptionHandler(value = { DataIntegrityViolationException.class})
     protected ResponseEntity<ErrorResponse> handleDataException() {
         log.error("handleDataException throw DataIntegrityViolationException : {}", MessageCode.BUSINESS_EXCEPTION);
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
         Map<String, String> responseMap = objectMapper.readValue(responseJson, Map.class);
 
         log.error("handleFeignException throw FeignException : {}", responseMap.get("message"));
-        
+
         return ResponseEntity
                 .status(feignException.status())
                 .body(ErrorResponse.builder()
@@ -54,12 +54,14 @@ public class GlobalExceptionHandler {
                         .build()
                 );
     }
- 
+
     @ExceptionHandler(value = { MethodArgumentNotValidException.class })
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException methodArgumentNotValidException){
         Map<String, String> errors = new HashMap<>();
-        methodArgumentNotValidException.getBindingResult().getAllErrors().forEach(error -> errors.put(((FieldError) error).getField(), error.getDefaultMessage()));
-        
+        methodArgumentNotValidException.getBindingResult().getAllErrors().forEach(error -> {
+        	errors.put(((FieldError) error).getField(), error.getDefaultMessage());
+        });
+
         return ResponseEntity.badRequest().body(errors);
     }
 }

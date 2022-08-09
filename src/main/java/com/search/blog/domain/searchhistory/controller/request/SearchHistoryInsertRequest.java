@@ -17,11 +17,11 @@ public class SearchHistoryInsertRequest {
 	/* ID */
 	@ApiModelProperty(hidden = true)
 	private Long id;
-	
+
 	/* 검색어 */
 	@ApiParam(value = "searchWord", required = true)
 	@Size(max = 50, message = "{validation.size.too_long} (50)")
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="{validation.notblank} searchWord")
 	private String searchWord;
-	
+
 }

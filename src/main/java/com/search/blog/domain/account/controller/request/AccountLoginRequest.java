@@ -12,12 +12,12 @@ public class AccountLoginRequest {
 
 	/* 로그인 ID */
 	@ApiParam(value = "loginId", required = true)
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="{validation.notblank} loginId")
 	private String loginId;
 
 	/* 비밀번호 */
 	@ApiParam(value = "password", required = true)
-	@NotBlank(message="{validation.notblank}")
+	@NotBlank(message="{validation.notblank} password")
 	private String password;
 
 }
