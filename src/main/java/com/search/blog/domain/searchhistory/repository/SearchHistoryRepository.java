@@ -13,11 +13,11 @@ import com.search.blog.domain.searchhistory.entity.SearchHistory;
 import com.search.blog.domain.searchhistory.entity.SearchHistoryPK;
 
 public interface SearchHistoryRepository extends JpaRepository<SearchHistory, SearchHistoryPK> {
-	
+
 	List<SearchHistory> findTop10ByOrderBySearchCountDesc();
-	
+
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select s from SearchHistory s where s.searchWord = :searchWord")
 	SearchHistory findBySearchWord(@Param("searchWord") String searchWord);
-	
+
 }

@@ -29,9 +29,9 @@ import lombok.RequiredArgsConstructor;
 public class Accountservice {
 
 	private final PasswordEncoder passwordEncoder;
-	
+
 	private final AccountRepository accountRepository;
-	
+
 	@Transactional
 	public ApiResponseEntity<AccountLoginResponse> signUp(AccountInsertRequest accountInsertRequest) {
 		checkDuplication(accountInsertRequest);
@@ -41,7 +41,7 @@ public class Accountservice {
 								 .password(passwordEncoder.encode(accountInsertRequest.getPassword()))
 								 .nickName(accountInsertRequest.getNickName())
 								 .build();
-		
+
 		accountRepository.save(account);
 
 		return new ApiResponseEntity<AccountLoginResponse>(createAccountLoginResponse(account));
@@ -49,43 +49,40 @@ public class Accountservice {
 
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<AccountLoginResponse> login(AccountLoginRequest accountLoginRequest) {
-		Account findAccount = accountRepository.findByLoginId(accountLoginRequest.getLoginId());
-		
-		if (ObjectUtils.isEmpty(findAccount)) {
-			throw new CustomException(MessageCode.INVALID_USER);
-		}	
-		
+		Account findAccount = accountRepository.findByLoginId(accountLoginRequest.getLoginId())
+											   .orElseThrow(() -> new CustomException(MessageCode.INVALID_USER));
+
         if (!passwordEncoder.matches(accountLoginRequest.getPassword(), findAccount.getPassword())) {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
         }
 
         return new ApiResponseEntity<AccountLoginResponse>(createAccountLoginResponse(findAccount));
 	}
-	
+
 	public ApiResponseEntity<Boolean> logout(HttpServletRequest request, HttpServletResponse response) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		
+
 		if (!ObjectUtils.isEmpty(authentication)) {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
-		
+
 		return new ApiResponseEntity<Boolean>(true, MessageCode.LOGOUT);
 	}
-	
+
 	private AccountLoginResponse createAccountLoginResponse(Account findAccount) {
         Authentication authentication = new UserAuthentication(findAccount.getLoginId(), null);
-        
+
 		return AccountLoginResponse.builder()
 							 	   .loginId(findAccount.getLoginId())
 							 	   .nickName(findAccount.getNickName())
 							 	   .accessToken(JwtTokenProvider.generateToken(authentication))
 							 	   .build();
 	}
-	
+
 	private void checkDuplication(AccountInsertRequest accountInsertRequest) {
 		if (!ObjectUtils.isEmpty(accountRepository.findByLoginId(accountInsertRequest.getLoginId()))) {
 			throw new CustomException(MessageCode.MEMBER_EXISTING);
 		}
 	}
-	
+
 }
