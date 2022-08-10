@@ -2,6 +2,7 @@ package com.search.blog.domain.searchhistory.service;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -37,14 +38,20 @@ public class SearchHistoryService {
 
 	@Transactional
 	public ApiResponseEntity<Boolean> save(SearchHistoryInsertRequest searchHistoryInsertRequest) {
-		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchHistoryInsertRequest.getSearchWord());
+		Optional<SearchHistory> findSearchHistory = searchHistoryRepository.findById(searchHistoryInsertRequest.getSearchWord());
 
-			searchHistory = SearchHistory.Update()
-					 					 .searchWord(searchHistoryInsertRequest.getSearchWord())
-					 					 .searchCount(searchHistory.getSearchCount())
-					 					 .build();
+		if (findSearchHistory.isPresent()) {
+			SearchHistory searchHistory = findSearchHistory.get();
 
-		searchHistoryRepository.save(searchHistory);
+			searchHistoryRepository.save(SearchHistory.Update()
+					 								  .searchWord(searchHistoryInsertRequest.getSearchWord())
+					 								  .searchCount(searchHistory.getSearchCount())
+					 								  .build());
+		} else {
+			searchHistoryRepository.save(SearchHistory.Insert()
+					 								  .searchWord(searchHistoryInsertRequest.getSearchWord())
+					 								  .build());
+		}
 
 		return new ApiResponseEntity<Boolean>(true, MessageCode.REGISTERED);
 	}

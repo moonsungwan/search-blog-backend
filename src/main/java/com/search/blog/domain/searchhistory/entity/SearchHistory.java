@@ -27,6 +27,10 @@ public class SearchHistory extends BaseEntity {
     @Column(name = "SEARCH_COUNT")
     private Integer searchCount = 1;
 
+    public void setSearchCount(int count) {
+    	this.searchCount = count;
+    }
+
     @Builder(builderClassName = "Insert", builderMethodName = "Insert")
     public SearchHistory(String searchWord) {
         this.searchWord = searchWord;

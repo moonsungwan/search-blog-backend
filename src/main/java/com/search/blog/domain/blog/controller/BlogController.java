@@ -2,8 +2,7 @@ package com.search.blog.domain.blog.controller;
 
 
 import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +24,14 @@ import lombok.RequiredArgsConstructor;
 public class BlogController {
 
 	private final BlogService blogService;
-	
+
 	@ApiOperation(value = "블로그 목록", notes="블로그 목록")
 	@GetMapping("/blog")
-	public ApiResponseEntity<BlogResponse> find(@RequestParam("query") @NotBlank @Size(max = 15) String query
+	public ApiResponseEntity<BlogResponse> find(@Pattern(regexp = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-z0-9-_]{1,50}$", message = "{validation.field.searchWord}") @RequestParam("query") String query
 											  , @RequestParam(value = "sort") String sort
 											  , @RequestParam(value = "page", defaultValue = "1")  @Max(50) Integer page
 											  , @RequestParam(value = "size", defaultValue = "10") @Max(50) Integer size) {
 		return blogService.find(query, sort, page, size);
 	}
-	
+
 }
