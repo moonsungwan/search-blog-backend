@@ -27,7 +27,7 @@ public class BlogController {
 
 	@ApiOperation(value = "블로그 목록", notes="블로그 목록")
 	@GetMapping("/blog")
-	public ApiResponseEntity<BlogResponse> find(@Pattern(regexp = "^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-_]{1,50}$", message = "{validation.field.searchWord}") @RequestParam("query") String query
+	public ApiResponseEntity<BlogResponse> find(@Pattern(regexp = "^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-_:,.' ']{1,50}$", message = "{validation.field.searchWord}") @RequestParam("query") String query
 											  , @RequestParam(value = "sort") String sort
 											  , @RequestParam(value = "page", defaultValue = "1")  @Max(50) Integer page
 											  , @RequestParam(value = "size", defaultValue = "10") @Max(50) Integer size) {

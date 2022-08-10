@@ -17,7 +17,7 @@ public class SearchHistoryInsertRequest {
 	/* 검색어 */
 	@ApiParam(value = "searchWord", required = true)
 	@Size(max = 50, message = "{validation.size.too_long} (50)")
-	@Pattern(regexp = "^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-_]{1,50}$", message = "{validation.field.searchWord}")
+	@Pattern(regexp = "^[ㄱ-ㅎㅏ-ㅣ가-힣0-9a-zA-Z-_:,.' ']{1,50}$", message = "{validation.field.searchWord}")
 	@NotBlank(message="{validation.notblank} searchWord")
 	private String searchWord;
 
