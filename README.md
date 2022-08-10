@@ -177,6 +177,7 @@ $ npm run serve
 | 항목 | 값             |
 | ---- | -------------- |
 | URL  | `POST` /api/v1/account/sign-up |
+
 요청
 
 ```json
@@ -206,6 +207,7 @@ $ npm run serve
 | 항목 | 값             |
 | ---- | -------------- |
 | URL  | `GET` /api/v1/blog |
+
 요청
 
 ```json
@@ -276,7 +278,7 @@ sort 종류 - accuracy, recency
 | 항목 | 값             |
 | ---- | -------------- |
 | URL  | `POST` /api/v1/account/search-history
- |
+
 요청
 
 ```json
@@ -300,6 +302,7 @@ sort 종류 - accuracy, recency
 | 항목 | 값             |
 | ---- | -------------- |
 | URL  | `GET` /api/v1/bookmark-blog |
+
 요청
 
 ```json
@@ -314,6 +317,7 @@ sort 종류 - accuracy, recency
 | 항목 | 값             |
 | ---- | -------------- |
 | URL  | `POST` /api/v1/bookmark-blog |
+
 요청
 
 ```json
