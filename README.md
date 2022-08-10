@@ -83,7 +83,7 @@ $ npm run serve
 
 ---
 ## ERD
-![image](https://user-images.githubusercontent.com/18672444/183285563-a6cb5b62-e5a3-4286-8ac8-bede5d04319d.png)
+![image](https://user-images.githubusercontent.com/18672444/183794045-53f2f0d7-98d0-40bf-be9d-bfabbd8d6dba.png)
 
 ---
 ## API 명세
