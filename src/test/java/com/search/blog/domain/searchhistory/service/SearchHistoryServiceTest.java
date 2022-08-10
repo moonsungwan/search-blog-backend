@@ -8,7 +8,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.search.blog.domain.searchhistory.controller.request.SearchHistoryInsertRequest;
 import com.search.blog.domain.searchhistory.entity.SearchHistory;
 import com.search.blog.domain.searchhistory.repository.SearchHistoryRepository;
 
@@ -35,12 +33,6 @@ class SearchHistoryServiceTest {
 	@MockBean
 	private SearchHistoryService searchHistoryService;
 
-	@Before
-	void setUp() {
-		String searchWord = "조회수테스트";
-		searchHistoryRepository.save(SearchHistory.Insert().searchWord(searchWord).build());
-	}
-
 	@Test
 	@DisplayName("인기검색어 등록")
 	void 인기검색어_등록() throws InterruptedException {
@@ -48,17 +40,15 @@ class SearchHistoryServiceTest {
 		String searchWord = "검색어 저장";
 
 		// when
-		searchHistoryRepository.save(SearchHistory.Insert().searchWord(searchWord).build());
-
-		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchWord);
+		SearchHistory searchHistory = searchHistoryRepository.save(SearchHistory.Insert().searchWord(searchWord).build());
 
 		// then
 		assertTrue(searchWord.equals(searchHistory.getSearchWord()));
 	}
 
 	@Test
-	@DisplayName("인기검색어 검색 횟수 (동시성)")
-	void 인기검색어_검색_횟수_동시성() throws InterruptedException {
+	@DisplayName("인기검색어 등록 (검색된 횟수 동시성)")
+	void 인기검색어_등록_동시성() throws InterruptedException {
 		// given
 		String searchWord = "동시성 테스트";
 
@@ -69,14 +59,14 @@ class SearchHistoryServiceTest {
 		CountDownLatch latch = new CountDownLatch(numberOfExcute);
 
 		for (int i = 0; i < numberOfExcute; i++) {
-			SearchHistoryInsertRequest searchHistoryInsertRequest = new SearchHistoryInsertRequest();
 			service.execute(() -> {
 				try {
-					searchHistoryInsertRequest.setSearchWord(searchWord);
-					searchHistoryService.save(searchHistoryInsertRequest);
-
 					successCount.getAndIncrement();
-					System.out.println("성공");
+
+					SearchHistory searchHistory = searchHistoryRepository.findById(searchWord).get();
+					searchHistory.add(successCount.get());
+
+					searchHistoryRepository.save(searchHistory);
 				} catch (ObjectOptimisticLockingFailureException oe) {
 					System.out.println("충돌감지");
 				} catch (Exception e) {
@@ -88,7 +78,9 @@ class SearchHistoryServiceTest {
 		latch.await();
 
 		// then
-		assertTrue(successCount.get() == numberOfExcute);
+		int resultCount = searchHistoryRepository.findById(searchWord).get().getSearchCount();
+
+		assertTrue(successCount.get() == resultCount);
 	}
 
 	@Test
