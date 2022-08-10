@@ -57,8 +57,8 @@ class SearchHistoryServiceTest {
 	}
 
 	@Test
-	@DisplayName("인기검색어 등록 (검색된 횟수 동시성)")
-	void 인기검색어_등록_동시성() throws InterruptedException {
+	@DisplayName("인기검색어 검색 횟수 (동시성)")
+	void 인기검색어_검색_횟수_동시성() throws InterruptedException {
 		// given
 		String searchWord = "동시성 테스트";
 
