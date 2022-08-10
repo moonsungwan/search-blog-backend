@@ -27,7 +27,7 @@ public class SearchHistory extends BaseEntity {
     @Column(name = "SEARCH_COUNT")
     private Integer searchCount = 1;
 
-    public void setSearchCount(int count) {
+    public void addSearchCount(int count) {
     	this.searchCount = count;
     }
 

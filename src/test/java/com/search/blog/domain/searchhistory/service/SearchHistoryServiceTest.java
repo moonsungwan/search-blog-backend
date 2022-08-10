@@ -64,7 +64,7 @@ class SearchHistoryServiceTest {
 					successCount.getAndIncrement();
 
 					SearchHistory searchHistory = searchHistoryRepository.findById(searchWord).get();
-					searchHistory.setSearchCount(successCount.get());
+					searchHistory.addSearchCount(successCount.get());
 
 					searchHistoryRepository.save(searchHistory);
 				} catch (ObjectOptimisticLockingFailureException oe) {
