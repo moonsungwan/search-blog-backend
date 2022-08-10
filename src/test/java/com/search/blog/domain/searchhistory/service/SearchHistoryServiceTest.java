@@ -50,7 +50,7 @@ class SearchHistoryServiceTest {
 	@DisplayName("인기검색어 등록 (검색된 횟수 동시성)")
 	void 인기검색어_등록_동시성() throws InterruptedException {
 		// given
-		String searchWord = "동시성 테스트";
+		String searchWord = "Concurrent Test";
 
 		// when
 		AtomicInteger successCount = new AtomicInteger();
