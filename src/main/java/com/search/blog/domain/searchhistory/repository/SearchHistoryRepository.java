@@ -10,9 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.search.blog.domain.searchhistory.entity.SearchHistory;
-import com.search.blog.domain.searchhistory.entity.SearchHistoryPK;
 
-public interface SearchHistoryRepository extends JpaRepository<SearchHistory, SearchHistoryPK> {
+public interface SearchHistoryRepository extends JpaRepository<SearchHistory, String> {
 
 	List<SearchHistory> findTop10ByOrderBySearchCountDesc();
 

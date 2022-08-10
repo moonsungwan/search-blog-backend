@@ -46,12 +46,12 @@ class SearchHistoryServiceTest {
 	void 인기검색어_등록() throws InterruptedException {
 		// given
 		String searchWord = "검색어 저장";
-		
+
 		// when
 		searchHistoryRepository.save(SearchHistory.Insert().searchWord(searchWord).build());
 
 		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord(searchWord);
-		
+
 		// then
 		assertTrue(searchWord.equals(searchHistory.getSearchWord()));
 	}
@@ -60,19 +60,21 @@ class SearchHistoryServiceTest {
 	@DisplayName("인기검색어 등록 (검색된 횟수 동시성)")
 	void 인기검색어_등록_동시성() throws InterruptedException {
 		// given
+		String searchWord = "동시성 테스트";
+
+		// when
 		AtomicInteger successCount = new AtomicInteger();
 		int numberOfExcute = 100;
 		ExecutorService service = Executors.newFixedThreadPool(10);
 		CountDownLatch latch = new CountDownLatch(numberOfExcute);
 
 		for (int i = 0; i < numberOfExcute; i++) {
+			SearchHistoryInsertRequest searchHistoryInsertRequest = new SearchHistoryInsertRequest();
 			service.execute(() -> {
 				try {
-					SearchHistoryInsertRequest searchHistoryInsertRequest = new SearchHistoryInsertRequest();
-					searchHistoryInsertRequest.setId(123123L);
-					searchHistoryInsertRequest.setSearchWord("검색어");
-
+					searchHistoryInsertRequest.setSearchWord(searchWord);
 					searchHistoryService.save(searchHistoryInsertRequest);
+
 					successCount.getAndIncrement();
 					System.out.println("성공");
 				} catch (ObjectOptimisticLockingFailureException oe) {
@@ -84,9 +86,6 @@ class SearchHistoryServiceTest {
 			});
 		}
 		latch.await();
-
-		// when
-		SearchHistory searchHistory = searchHistoryRepository.findBySearchWord("검색어");
 
 		// then
 		assertTrue(successCount.get() == numberOfExcute);
