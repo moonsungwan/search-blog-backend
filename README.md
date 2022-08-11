@@ -26,7 +26,6 @@
 --|--|
  |언어 | JAVA 8 |
  |BE | Spring Boot, JPA, Spring Validation, Spring Security(JWT), Feign Client |
- |FE| Vue |
  |DB | H2 |
  | IDE | 이클립스
   |빌드 툴 | Gradle |

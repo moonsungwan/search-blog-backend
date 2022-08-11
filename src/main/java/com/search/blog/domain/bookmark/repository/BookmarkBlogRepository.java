@@ -10,6 +10,6 @@ public interface BookmarkBlogRepository extends JpaRepository<BookmarkBlog, Long
 
 	List<BookmarkBlog> findByLoginId(String loginId);
 
-	boolean existsByBookmarkTitle(String bookmarkTitle);
+	boolean existsByBookmarkUrl(String bookmarkUrl);
 
 }
