@@ -126,8 +126,10 @@ $ npm run serve
 | `FAILED` | 실패하였습니다.       |
 | `INVALID_AUTH_TOKEN` | 토큰 정보가 유효하지 않습니다.       |
 | `INVALID_PASSWORD` | 잘못된 비밀번호입니다.       |
+| `INVALID_ACCOUNT` | 잘못된 계정입니다.       |
 | `BUSINESS_EXCEPTION` | 업무로직에서 에러가 발생했습니다.       |
-| `MEMBER_EXISTING` | 이미 등록된 유저 정보입니다.       |
+| `EXISTING_ACCOUNT` | 이미 등록된 계정입니다.       |
+| `EXISTING_BOOKMARK` | 이미 등록된 북마크입니다.       |
 ---
 `에러 응답 예`
 
@@ -136,8 +138,8 @@ $ npm run serve
     "timestamp": "2022-08-07T19:12:33.3440113",
     "status": 409,
     "error": "CONFLICT",
-    "code": "MEMBER_EXISTING",
-    "message": "이미 등록된 유저 정보입니다."
+    "code": "EXISTING_ACCOUNT",
+    "message": "이미 등록된 계정입니다."
 }
 ```
 

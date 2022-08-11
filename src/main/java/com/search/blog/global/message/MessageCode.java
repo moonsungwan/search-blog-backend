@@ -27,6 +27,7 @@ public enum MessageCode {
 
     /* 409 CONFLICT : Resource 의 현재 상태와 충돌. 보통 중복된 데이터 존재 */
     EXISTING_ACCOUNT(HttpStatus.CONFLICT, "이미 등록된 계정입니다."),
+    EXISTING_BOOKMARK(HttpStatus.CONFLICT, "이미 등록된 북마크입니다."),
     ;
 
     private final HttpStatus status;

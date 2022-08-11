@@ -62,8 +62,8 @@ class AccountserviceTest {
 	}
 
 	@Test
-	@DisplayName("회원가입_예외")
-	public void 회원가입_예외() {
+	@DisplayName("회원가입_중복검사")
+	public void 회원가입_중복검사() {
 		// given
 		Account account = Account.Insert()
 								 .loginId("account1")

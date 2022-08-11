@@ -24,19 +24,19 @@ import lombok.RequiredArgsConstructor;
 public class BookmarkBlogService {
 
 	private final BookmarkBlogRepository bookmarkBlogRepository;
-	
+
 	private final ModelMapper modelMapper;
-		
+
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<List<BookmarkBlogResponse>> find() {
 		List<BookmarkBlogResponse> bookmarkBlogs = bookmarkBlogRepository.findByLoginId(SecurityUtil.getCurrentLoginId())
 				  														 .stream()
 				  														 .map(bookmark -> modelMapper.map(bookmark, BookmarkBlogResponse.class))
 				  														 .collect(Collectors.toList());
-		
+
 		return new ApiResponseEntity<List<BookmarkBlogResponse>>(bookmarkBlogs, MessageCode.SUCCEED);
 	}
-	
+
 	@Transactional
 	public ApiResponseEntity<Boolean> save(BookmarkBlogInsertRequest blogInsertRequest) {
 		BookmarkBlog bookmarkBlog = BookmarkBlog.Insert()
@@ -44,19 +44,23 @@ public class BookmarkBlogService {
 												.bookmarkTitle(blogInsertRequest.getBookmarkTitle())
 												.bookmarkUrl(blogInsertRequest.getBookmarkUrl())
 												.build();
-		
+
+		if (bookmarkBlogRepository.existsByBookmarkTitle(bookmarkBlog.getBookmarkTitle())) {
+			throw new CustomException(MessageCode.EXISTING_BOOKMARK);
+		}
+
 		bookmarkBlogRepository.save(bookmarkBlog);
-		
+
 		return new ApiResponseEntity<Boolean>(true, MessageCode.REGISTERED);
 	}
-	
+
 	@Transactional
 	public ApiResponseEntity<Boolean> delete(Long id) {
 		BookmarkBlog findBookmarkBlog =  bookmarkBlogRepository.findById(id)
 															   .orElseThrow(() -> new CustomException(MessageCode.NO_CONTENT));
-		
+
 		bookmarkBlogRepository.delete(findBookmarkBlog);
-		
+
 		return new ApiResponseEntity<Boolean>(true, MessageCode.DELETED);
 	}
 

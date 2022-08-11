@@ -24,7 +24,7 @@ public class BookmarkBlog extends BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
-	
+
     /* 로그인 ID */
     @Column(name = "LOGIN_ID", nullable = false)
     private String loginId;
@@ -32,7 +32,7 @@ public class BookmarkBlog extends BaseEntity {
     /* 북마크 제목 */
     @Column(name = "BOOKMARK_TITLE", nullable = false)
     private String bookmarkTitle;
-    
+
     /* 북마크 URL */
     @Column(name = "BOOKMARK_URL", nullable = false)
     private String bookmarkUrl;
@@ -43,5 +43,5 @@ public class BookmarkBlog extends BaseEntity {
     	this.bookmarkTitle = bookmarkTitle;
     	this.bookmarkUrl = bookmarkUrl;
     }
-    
+
 }
