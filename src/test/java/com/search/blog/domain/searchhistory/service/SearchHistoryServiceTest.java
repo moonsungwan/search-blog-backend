@@ -82,7 +82,6 @@ class SearchHistoryServiceTest {
 	@Test
 	@DisplayName("인기검색어 조회")
 	void 인기검색어_조회_검색된횟수() {
-
 		// given
 		// when
 		List<SearchHistory> list = searchHistoryRepository.findTop10ByOrderBySearchCountDesc();
