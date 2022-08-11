@@ -49,7 +49,7 @@ $ https://github.com/moonsungwan/search-blog-backend.git
 $ https://github.com/moonsungwan/search-blog-frontend.git
 ```
 ### 백엔드 JAR 파일 실행
-- 다운로그 링크 : 
+- 다운로그 링크 : https://drive.google.com/file/d/1nAFIb2YMikIJok6Ps4416mVz7zUghzj7/view?usp=sharing
 ```
 $ java -jar search-blog-backend-0.0.1-SNAPSHOT.jar
 ```
