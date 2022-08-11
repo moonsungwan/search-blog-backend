@@ -76,7 +76,7 @@ $ npm run serve
 ---
 
 ## 테스트 방법
-- 기본계정 : accountA (ID) / 1234 (비밀번호)
+- 기본계정 : account1 (ID) / 1234 (비밀번호)
 - Swagger 접속정보
   - 토큰 기반 API호출 (로그인 후 토큰 값 Authorize에 입력)
   - http://localhost:8080/swagger-ui/index.html
@@ -104,7 +104,7 @@ $ npm run serve
 {
   "success": true,
   "data": {
-    "loginId": "accountA",
+    "loginId": "account1",
     "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2NvdW50QSIsImlhdCI6MTY1OTg2NjY3NywiZXhwIjoxNjU5ODcwMjc3fQ.K7l6p3RFlROcPB0gmFbth2XF_cpkWdeTmhHiYO0oswYR9nCBtNUJFdlha3l39_NFICxmSLLCsguzG963GXnqUQ"
   },
   "message": "성공하였습니다."
@@ -152,7 +152,7 @@ $ npm run serve
 
 ```json
 {
-    "loginId": "accountA",
+    "loginId": "account1",
     "password": "1234"
 }
 ```
@@ -163,7 +163,7 @@ $ npm run serve
 {
     "success": true,
     "data": {
-        "loginId": "accountA",
+        "loginId": "account1",
         "nickName": "문성완",
         "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2NvdW50QSIsImlhdCI6MTY1OTg2NzE5MSwiZXhwIjoxNjU5ODcwNzkxfQ.GoBl3DmqNycmwFhCdbH54SGW0pqBjIgEREz1ngVJmfJkAm13vsknv0qifZfMZD-Az5zsh7JFufxAkI6BJ9sefw"
     },
