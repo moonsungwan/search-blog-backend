@@ -28,7 +28,7 @@ class BookmarkBlogServiceTest {
     @DisplayName("블로그 즐겨찾기 추가")
 	public void 블로그_즐겨찾기_추가() {
 		// given
-		String loginId = "accountA";
+		String loginId = "account1";
 		String bookmarkTitle = "손흥민";
 		String bookmarkUrl = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%86%90%ED%9D%A5%EB%AF%BC";
 

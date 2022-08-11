@@ -18,21 +18,21 @@ public class AppConfig {
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }
-    
+
     @Bean
     public ApplicationRunner applicationRunner() {
         return new ApplicationRunner() {
 
             @Autowired
             AccountRepository accountRepository;
-            
+
             @Autowired
             PasswordEncoder passwordEncoder;
 
             @Override
             public void run(ApplicationArguments args) throws Exception {
         		accountRepository.save(Account.Insert()
-					 	   					  .loginId("accountA")
+					 	   					  .loginId("account1")
 					 	   					  .password(passwordEncoder.encode("1234"))
 					 	   					  .nickName("문성완")
 					 	   					  .build());

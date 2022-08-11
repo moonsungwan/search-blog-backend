@@ -66,7 +66,7 @@ class AccountserviceTest {
 	public void 회원가입_예외() {
 		// given
 		Account account = Account.Insert()
-								 .loginId("accountA")
+								 .loginId("account1")
 								 .password(passwordEncoder.encode("22"))
 								 .nickName("문성완")
 								 .build();
@@ -75,7 +75,7 @@ class AccountserviceTest {
 
 		// when
 		AccountInsertRequest account_2 = AccountInsertRequest.builder()
-															 .loginId("accountA")
+															 .loginId("account1")
 															 .password("1234")
 															 .nickName("중복처리")
 															 .build();
@@ -88,7 +88,7 @@ class AccountserviceTest {
     @DisplayName("로그인_성공")
 	public void 계정_조회_성공() {
 		// given
-		String loginId = "accountA";
+		String loginId = "account1";
 		String password = "1234";
 
 		Account account = Account.Insert()

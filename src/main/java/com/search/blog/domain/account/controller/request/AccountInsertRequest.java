@@ -15,7 +15,7 @@ public class AccountInsertRequest {
 
 	/* 로그인 ID */
 	@ApiParam(value = "loginId", required = true)
-	@Pattern(regexp = "[a-zA-Z1-9]{6,12}", message = "{validation.field.loginId} (loginId)")
+	@Pattern(regexp = "[a-z1-9]{6,12}", message = "{validation.field.loginId} (loginId)")
 	@NotBlank(message = "{validation.notblank} loginId")
 	private String loginId;
 
