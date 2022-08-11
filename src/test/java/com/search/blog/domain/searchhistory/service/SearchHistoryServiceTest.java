@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -29,9 +28,6 @@ class SearchHistoryServiceTest {
 
 	@Autowired
 	private SearchHistoryRepository searchHistoryRepository;
-
-	@MockBean
-	private SearchHistoryService searchHistoryService;
 
 	@Test
 	@DisplayName("인기검색어 등록")

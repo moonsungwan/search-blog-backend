@@ -11,10 +11,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.search.blog.domain.account.controller.request.AccountInsertRequest;
 import com.search.blog.domain.account.entity.Account;
 import com.search.blog.domain.account.repository.AccountRepository;
 import com.search.blog.global.exception.CustomException;
@@ -29,6 +31,9 @@ class AccountserviceTest {
 	@Autowired
 	private AccountRepository accountRepository;
 
+	@MockBean
+	private Accountservice accountservice;
+
 	private PasswordEncoder passwordEncoder;
 
 	@BeforeEach
@@ -40,7 +45,7 @@ class AccountserviceTest {
     @DisplayName("회원가입_성공")
 	public void 회원가입_성공() {
 		// given
-		String loginId = "accountA";
+		String loginId = "signTest";
 		String password = "1234";
 
 		Account account = Account.Insert()
@@ -54,6 +59,29 @@ class AccountserviceTest {
 
 		// then
 		assertNotNull(saveAccount);
+	}
+
+	@Test
+	@DisplayName("회원가입_예외")
+	public void 회원가입_예외() {
+		// given
+		Account account = Account.Insert()
+								 .loginId("accountA")
+								 .password(passwordEncoder.encode("22"))
+								 .nickName("문성완")
+								 .build();
+
+		Account signupAccount = accountRepository.save(account);
+
+		// when
+		AccountInsertRequest account_2 = AccountInsertRequest.builder()
+															 .loginId("accountA")
+															 .password("1234")
+															 .nickName("중복처리")
+															 .build();
+
+		// then
+		assertEquals("이미 등록된 계정입니다.", signupAccount.getLoginId(), account_2.getLoginId());
 	}
 
 	@Test
@@ -72,7 +100,7 @@ class AccountserviceTest {
 		// when
 		Account saveAccount = accountRepository.save(account);
 		Account loginAccount = accountRepository.findByLoginId(loginId)
-												.orElseThrow(() -> new CustomException(MessageCode.INVALID_USER));;
+												.orElseThrow(() -> new CustomException(MessageCode.INVALID_ACCOUNT));;
 
 		// then
 		assertNotNull(loginAccount);

@@ -5,6 +5,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import io.swagger.annotations.ApiParam;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,5 +30,12 @@ public class AccountInsertRequest {
 	@Size(max = 15, message = "{validation.size.too_long} (15)")
 	@NotBlank(message = "{validation.notblank} nickName")
 	private String nickName;
+
+	@Builder
+	public AccountInsertRequest(String loginId, String password, String nickName) {
+		this.loginId = loginId;
+		this.password = password;
+		this.nickName = nickName;
+	}
 
 }

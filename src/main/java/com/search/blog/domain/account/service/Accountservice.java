@@ -50,7 +50,7 @@ public class Accountservice {
 	@Transactional(readOnly = true)
 	public ApiResponseEntity<AccountLoginResponse> login(AccountLoginRequest accountLoginRequest) {
 		Account findAccount = accountRepository.findByLoginId(accountLoginRequest.getLoginId())
-											   .orElseThrow(() -> new CustomException(MessageCode.INVALID_USER));
+											   .orElseThrow(() -> new CustomException(MessageCode.INVALID_ACCOUNT));
 
         if (!passwordEncoder.matches(accountLoginRequest.getPassword(), findAccount.getPassword())) {
         	throw new CustomException(MessageCode.INVALID_PASSWORD);
@@ -80,9 +80,9 @@ public class Accountservice {
 	}
 
 	private void checkDuplication(AccountInsertRequest accountInsertRequest) {
-		if (!ObjectUtils.isEmpty(accountRepository.findByLoginId(accountInsertRequest.getLoginId()))) {
-			throw new CustomException(MessageCode.MEMBER_EXISTING);
-		}
+		accountRepository.findByLoginId(accountInsertRequest.getLoginId()).ifPresent(user -> {
+			throw new CustomException(MessageCode.EXISTING_ACCOUNT);
+		});
 	}
 
 }
