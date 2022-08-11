@@ -45,7 +45,7 @@ public class BookmarkBlogService {
 												.bookmarkUrl(blogInsertRequest.getBookmarkUrl())
 												.build();
 
-		if (bookmarkBlogRepository.existsByBookmarkUrl(bookmarkBlog.getBookmarkTitle())) {
+		if (bookmarkBlogRepository.existsByBookmarkUrl(bookmarkBlog.getBookmarkUrl())) {
 			throw new CustomException(MessageCode.EXISTING_BOOKMARK);
 		}
 
